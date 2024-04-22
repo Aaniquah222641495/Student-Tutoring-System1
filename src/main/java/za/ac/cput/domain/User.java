@@ -9,7 +9,7 @@ public class User {
     public enum Type{ADMIN, STUDENT, TUTOR}
     private Type type;
 
-    public User(Builder builder){
+    private User(Builder builder){
         this.id = builder.id;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
