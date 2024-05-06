@@ -1,6 +1,11 @@
 package za.ac.cput.domain;
 
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class User {
+    @Id
     private Integer id;
     private String firstName;
     private String lastName;
@@ -8,6 +13,9 @@ public class User {
     private String email;
     public enum Type{ADMIN, STUDENT, TUTOR}
     private Type type;
+
+    public User() {
+    }
 
     private User(Builder builder){
         this.id = builder.id;

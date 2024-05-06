@@ -1,12 +1,24 @@
 package za.ac.cput.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Set;
 
+@Entity
+@Table(name = "SUBJECT")
 public class Subject {
+    @Id
     private String subjectCode;
     private String name;
     private byte[] subjectGuide;
+
+    @OneToMany(mappedBy = "subject")
+    private Set<Student_Tutor_Subject> enrollments;
 
     public Subject() {
     }
