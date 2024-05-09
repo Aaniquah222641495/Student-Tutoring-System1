@@ -1,7 +1,9 @@
 package za.ac.cput.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Admin;
 
-public interface AdminRepository extends JpaRepository<Integer, Admin> {
+@Repository
+public interface AdminRepository extends JpaRepository<Admin, Integer> {
 }
