@@ -3,9 +3,9 @@ package za.ac.cput.domain;
 import jakarta.persistence.*;
 
 @Entity
-public class Student_Tutor_Subject {
+public class StudentTutorSubject {
     @EmbeddedId
-    private Student_Tutor_Subject_ID id;
+    private StudentTutorSubjectID id;
 
     @ManyToOne
     @MapsId("student_id")

@@ -3,32 +3,16 @@ package za.ac.cput.domain;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
+import java.util.Objects;
+
 @MappedSuperclass
-public class User {
+public abstract class User {
     @Id
-    private Integer id;
-    private String firstName;
-    private String lastName;
-    private String password;
-    private String email;
-    public enum Type{ADMIN, STUDENT, TUTOR}
-    private Type type;
-
-    public User() {
-    }
-
-    private User(Builder builder){
-        this.id = builder.id;
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
-        this.password = builder.password;
-        this.email = builder.email;
-        this.type = builder.type;
-
-    }
-    public Type getType() {
-        return type;
-    }
+    protected Integer id;
+    protected String firstName;
+    protected String lastName;
+    protected String password;
+    protected String email;
 
     public Integer getId() {
         return id;
@@ -46,61 +30,20 @@ public class User {
         return password;
     }
 
-    public String getEmail() {
+    public String getEmail(){
         return email;
     }
 
-    public static class Builder{
-        private Integer id;
-        private String firstName;
-        private String lastName;
-        private String password;
-        private String email;
-        private User.Type type;
-
-        public Builder setId(Integer id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder setFirstName(String firstName) {
-            this.firstName = firstName;
-            return this;
-        }
-
-        public Builder setLastName(String lastName) {
-            this.lastName = lastName;
-            return this;
-        }
-
-        public Builder setPassword(String password) {
-            this.password = password;
-            return this;
-        }
-
-        public Builder setEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Builder setType(Type type) {
-            this.type = type;
-            return this;
-        }
-
-        public Builder copy(User user){
-            this.id = user.getId();
-            this.firstName = user.getLastName();
-            this.lastName = user.getLastName();
-            this.password = user.getPassword();
-            this.email = user.getEmail();
-            this.type = user.getType();
-            return this;
-        }
-
-        public User build(){
-            return new User(this);
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(password, user.password) && Objects.equals(email, user.email);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, password, email);
+    }
 }

@@ -18,7 +18,7 @@ public class Subject {
     private byte[] subjectGuide;
 
     @OneToMany(mappedBy = "subject")
-    private Set<Student_Tutor_Subject> enrollments;
+    private Set<StudentTutorSubject> enrollments;
 
     public Subject() {
     }
@@ -27,6 +27,7 @@ public class Subject {
         this.subjectCode = builder.subjectCode;
         this.name = builder.name;
         this.subjectGuide = builder.subjectGuide;
+        this.enrollments = builder.enrollments;
     }
 
     public String getSubjectCode() {
@@ -39,6 +40,10 @@ public class Subject {
 
     public byte[] getSubjectGuide() {
         return subjectGuide;
+    }
+
+    public Set<StudentTutorSubject> getEnrollments() {
+        return enrollments;
     }
 
     @Override
@@ -69,6 +74,7 @@ public class Subject {
         private String subjectCode;
         private String name;
         private byte[] subjectGuide;
+        private Set<StudentTutorSubject> enrollments;
 
         public Builder setSubjectCode(String subjectCode) {
             this.subjectCode = subjectCode;
@@ -89,6 +95,7 @@ public class Subject {
             this.subjectCode = subject.getSubjectCode();
             this.name = subject.getName();
             this.subjectGuide = subject.getSubjectGuide();
+            this.enrollments = subject.getEnrollments();
             return this;
         }
 
