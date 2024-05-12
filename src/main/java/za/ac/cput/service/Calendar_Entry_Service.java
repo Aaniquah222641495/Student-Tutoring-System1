@@ -37,11 +37,7 @@ public class Calendar_Entry_Service implements IService<Calendar_Entry, Integer>
 
     @Override
     public void delete(Integer integer) {
-        try {
-            repository.deleteById(integer);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        repository.deleteById(integer);
     }
 
     public List<Calendar_Entry> getAllCalendarEntries() {
