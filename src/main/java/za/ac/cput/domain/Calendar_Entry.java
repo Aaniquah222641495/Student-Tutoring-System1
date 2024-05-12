@@ -1,14 +1,24 @@
 package za.ac.cput.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+
 import java.util.Date;
 
+@Entity
 public class Calendar_Entry {
-
+    @Id
     private Integer entry_id;
     private Date date;
     private String title;
-    private Integer student_id;
-    private Integer tutor_id;
+    @OneToOne
+    @JoinColumn(name = "student_id")
+    private Student student_id;
+    @OneToOne
+    @JoinColumn(name = "tutor_id")
+    private Tutor tutor_id;
     private String subject_code;
     private String description;
 
@@ -38,11 +48,11 @@ public class Calendar_Entry {
         return title;
     }
 
-    public Integer getStudent_id() {
+    public Student getStudent_id() {
         return student_id;
     }
 
-    public Integer getTutor_id() {
+    public Tutor getTutor_id() {
         return tutor_id;
     }
 
@@ -71,8 +81,8 @@ public class Calendar_Entry {
         private Integer entry_id;
         private Date date;
         private String title;
-        private Integer student_id;
-        private Integer tutor_id;
+        private Student student_id;
+        private Tutor tutor_id;
         private String subject_code;
         private String description;
 
@@ -91,12 +101,12 @@ public class Calendar_Entry {
             return this;
         }
 
-        public Builder setStudent_id(Integer student_id) {
+        public Builder setStudent_id(Student student_id) {
             this.student_id = student_id;
             return this;
         }
 
-        public Builder setTutor_id(Integer tutor_id) {
+        public Builder setTutor_id(Tutor tutor_id) {
             this.tutor_id = tutor_id;
             return this;
         }

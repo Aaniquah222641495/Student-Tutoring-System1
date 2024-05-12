@@ -12,7 +12,7 @@ import za.ac.cput.service.AdminService;
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
-    AdminService service;
+    private AdminService service;
 
     @GetMapping("/get/{id}")
     public Admin getById(@PathVariable Integer id){

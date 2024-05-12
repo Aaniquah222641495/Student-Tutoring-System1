@@ -1,9 +1,16 @@
 package za.ac.cput.domain;
 
-public class Resource {
+import jakarta.persistence.*;
 
+@Entity
+public class Resource {
+    @Id
     private String id;
+    @OneToOne
+    @JoinColumn(name = "sender id")
     private User sender;
+    @OneToOne
+    @JoinColumn(name = "receiver_id")
     private User receiver;
     private byte[] resource;
     private String resourceName;
