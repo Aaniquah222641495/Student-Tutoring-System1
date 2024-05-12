@@ -8,7 +8,7 @@ import za.ac.cput.repository.AdminRepository;
 import za.ac.cput.repository.ResourceRepository;
 
 @Service
-public class ResourceService implements IService<Resource, Integer> {
+public class ResourceService implements IService<Resource, String> {
     private final ResourceRepository repository;
     @Autowired
     public ResourceService(ResourceRepository repository) {
@@ -21,8 +21,8 @@ public class ResourceService implements IService<Resource, Integer> {
     }
 
     @Override
-    public Resource read(Integer integer) {
-        return repository.findById(integer).orElse(null);
+    public Resource read(String s) {
+        return repository.findById(s).orElse(null);
     }
 
     @Override
@@ -34,8 +34,8 @@ public class ResourceService implements IService<Resource, Integer> {
     }
 
     @Override
-    public void delete(Integer integer) {
-        repository.deleteById(integer);
+    public void delete(String s) {
+        repository.deleteById(s);
     }
 
 }

@@ -13,7 +13,7 @@ public class ResourceController {
     @Autowired
     ResourceService service;
     @GetMapping("/get/{id}")
-    public Resource getById(@PathVariable Integer id){return service.read(id);}
+    public Resource getById(@PathVariable String id){return service.read(id);}
     @PostMapping("/create")
     public Resource create(@RequestBody Resource resource){return service.create(resource);}
 

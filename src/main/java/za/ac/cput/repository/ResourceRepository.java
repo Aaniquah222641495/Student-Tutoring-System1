@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Resource;
 
 @Repository
-public interface ResourceRepository extends JpaRepository<Resource, Integer> {
+public interface ResourceRepository extends JpaRepository<Resource, String> {
 }

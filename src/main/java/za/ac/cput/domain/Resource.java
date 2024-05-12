@@ -26,7 +26,7 @@ public class Resource {
         this.resource = resource;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -47,13 +47,13 @@ public class Resource {
     }
 
     public static class Builder{
-        private int id;
+        private String id;
         private User sender;
         private User receiver;
         private byte[] resource;
         private String resourceName;
 
-        public Builder setId(int id) {
+        public Builder setId(String id) {
             this.id = id;
             return this;
         }
