@@ -1,11 +1,13 @@
 package za.ac.cput.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Calendar_Entry;
 
 import java.util.Date;
 import java.util.List;
 
+@Repository
 public interface Calendar_Entry_Repository extends JpaRepository<Calendar_Entry, Integer> {
 
     // Find calendar entries by student ID
