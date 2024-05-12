@@ -2,7 +2,7 @@ package za.ac.cput.domain;
 
 public class Resource {
 
-    private String id;
+    private int id;
     private User sender;
     private User receiver;
     private byte[] resource;
@@ -19,7 +19,7 @@ public class Resource {
         this.resource = resource;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -40,13 +40,13 @@ public class Resource {
     }
 
     public static class Builder{
-        private String id;
+        private int id;
         private User sender;
         private User receiver;
         private byte[] resource;
         private String resourceName;
 
-        public Builder setId(String id) {
+        public Builder setId(int id) {
             this.id = id;
             return this;
         }
@@ -61,8 +61,8 @@ public class Resource {
             return this;
         }
 
-        public Builder setResource(byte[] resource) {
-            this.resource = resource;
+        public Builder setResource(byte resource) {
+            this.resource = new byte[]{resource};
             return this;
         }
 
