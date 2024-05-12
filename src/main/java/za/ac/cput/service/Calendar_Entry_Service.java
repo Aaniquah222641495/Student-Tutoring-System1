@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Calendar_Entry;
 import za.ac.cput.repository.Calendar_Entry_Repository;
 
+import java.util.List;
+
 @Service
 public class Calendar_Entry_Service implements IService<Calendar_Entry, Integer>{
     private final Calendar_Entry_Repository repository;
@@ -40,5 +42,9 @@ public class Calendar_Entry_Service implements IService<Calendar_Entry, Integer>
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Calendar_Entry> getAllCalendarEntries() {
+        return repository.findAll();
     }
 }
