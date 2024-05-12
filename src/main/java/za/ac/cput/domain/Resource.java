@@ -12,6 +12,8 @@ public class Resource {
     @OneToOne
     @JoinColumn(name = "receiver_id")
     private User receiver;
+    @Lob
+    @Column(columnDefinition="BLOB")
     private byte[] resource;
     private String resourceName;
 

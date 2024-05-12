@@ -24,6 +24,16 @@ public class StudentTutorSubject {
     @JoinColumn(name = "subject_code")
     private Subject subject;
 
+    public StudentTutorSubject() {
+    }
+
+    public StudentTutorSubject(Builder builder) {
+        this.id = builder.id;
+        this.subject = builder.subject;
+        this.tutor = builder.tutor;
+        this.student = builder.student;
+    }
+
     public StudentTutorSubjectID getId() {
         return id;
     }
@@ -38,6 +48,45 @@ public class StudentTutorSubject {
 
     public Subject getSubject() {
         return subject;
+    }
+
+    public static class Builder{
+        private StudentTutorSubjectID id;
+        private Student student;
+        private Tutor tutor;
+        private Subject subject;
+
+        public Builder setId(StudentTutorSubjectID id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setTutor(Tutor tutor) {
+            this.tutor = tutor;
+            return this;
+        }
+
+        public Builder setStudent(Student student) {
+            this.student = student;
+            return this;
+        }
+
+        public Builder setSubject(Subject subject) {
+            this.subject = subject;
+            return this;
+        }
+
+        public Builder copy(StudentTutorSubject studentTutorSubject) {
+            this.id = studentTutorSubject.getId();
+            this.student = studentTutorSubject.getStudent();
+            this.tutor = studentTutorSubject.getTutor();
+            this.subject = studentTutorSubject.getSubject();
+            return this;
+        }
+
+        public StudentTutorSubject build(){
+            return new StudentTutorSubject(this);
+        }
     }
 
     @Override
