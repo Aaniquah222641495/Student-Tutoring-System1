@@ -1,11 +1,14 @@
 package za.ac.cput.domain;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
 import java.util.Objects;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
     @Id
     protected Integer id;
@@ -46,4 +49,5 @@ public abstract class User {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, password, email);
     }
+
 }

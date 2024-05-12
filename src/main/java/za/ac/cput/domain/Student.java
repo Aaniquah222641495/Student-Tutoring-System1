@@ -2,6 +2,7 @@ package za.ac.cput.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 import java.util.Objects;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="STUDENT")
+@PrimaryKeyJoinColumn(name = "student_id")
 public class Student extends User{
 
     @OneToMany(mappedBy = "student")

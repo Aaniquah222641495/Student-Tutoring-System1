@@ -1,8 +1,19 @@
 package za.ac.cput.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class Message {
+    @Id
     private String id;
+    @OneToOne
+    @JoinColumn(name = "sender id")
     private User sender;
+    @OneToOne
+    @JoinColumn(name = "receiver_id")
     private User receiver;
     private String text;
 
