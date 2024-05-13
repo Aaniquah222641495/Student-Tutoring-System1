@@ -10,16 +10,12 @@ import java.util.List;
 @Repository
 public interface Calendar_Entry_Repository extends JpaRepository<Calendar_Entry, Integer> {
 
-    // Find calendar entries by student ID
     List<Calendar_Entry> findByStudentId(Integer studentId);
 
-    // Find calendar entries by tutor ID
     List<Calendar_Entry> findByTutorId(Integer tutorId);
 
-    // Find calendar entries by subject code
     List<Calendar_Entry> findBySubjectCode(String subjectCode);
 
-    // Find calendar entries by date
     List<Calendar_Entry> findByDateBetween(Date startDate, Date endDate);
 
 }
