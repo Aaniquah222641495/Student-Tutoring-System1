@@ -18,7 +18,7 @@ public class Resource {
     @JoinColumn(name = "receiver_id")
     private User receiver;
     @Lob
-    @Column(name = "resource", columnDefinition="BLOB")
+    @Column(name = "resource", columnDefinition="MEDIUMBLOB")
     private byte[] resource;
 
     private String resourceName;
