@@ -40,6 +40,9 @@ public class Calendar_Entry {
         return entry_id;
     }
 
+    public void setEntry_id(Integer id) {
+    }
+
     public Date getDate() {
         return date;
     }
