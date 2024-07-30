@@ -13,19 +13,21 @@ import java.time.LocalDateTime;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer booking_id;
-    public LocalDateTime startTime;
-    public LocalDateTime endTime;
+    private Integer booking_id;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     @OneToOne
     @JoinColumn(name = "tutor_id")
-    public Tutor tutor;
+    private Tutor tutor;
     @OneToOne
     @JoinColumn(name = "student_id")
-    public Student student;
+    private Student student;
     @OneToOne
     @JoinColumn(name = "subject_id")
-    public Subject subject;
-    public String topic;
+    private Subject subject;
+    private String topic;
+    public enum Status{UPCOMING, PAST}
+    private Status status;
 
     public Booking() {}
 
