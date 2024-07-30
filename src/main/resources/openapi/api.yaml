@@ -1,0 +1,840 @@
+openapi: 3.0.1
+info:
+  title: StudentDTO Tutor BookingDTO Management System
+  description: This is a system allowing students and tutors to book in-person sessions
+    at designated venues on campus.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: 222641495@mycput.ac.za
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+tags:
+  - name: admin
+    description: Admin management
+  - name: student
+    description: StudentDTO management
+  - name: tutor
+    description: Tutor management
+  - name: subject
+    description: SubjectDTO management
+  - name: venue
+    description: Venue management
+  - name: session
+    description: Session management
+  - name: booking
+    description: BookingDTO management
+  - name: feedback
+    description: FeedbackDTO management
+paths:
+  /users:
+    post:
+      tags:
+        - admin
+      summary: Create a new user
+      description: This can only be done by the admin.
+      operationId: createUser
+      requestBody:
+        description: UserDTO object that needs to be added to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDTO'
+        required: true
+      responses:
+        "201":
+          description: UserDTO created successfully
+          content: {}
+        "400":
+          description: Invalid input
+          content: {}
+      x-codegen-request-body-name: body
+  /users/{userId}:
+    get:
+      tags:
+        - admin
+      summary: Get user by user ID
+      description: Returns a single user
+      operationId: getUserById
+      parameters:
+        - name: userId
+          in: path
+          description: ID of user to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDTO'
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: UserDTO not found
+          content: {}
+    put:
+      tags:
+        - admin
+      summary: Update an existing user
+      description: This can only be done by the admin.
+      operationId: updateUser
+      parameters:
+        - name: userId
+          in: path
+          description: ID of user that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDTO'
+        required: true
+      responses:
+        "200":
+          description: UserDTO updated successfully
+          content: {}
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: UserDTO not found
+          content: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - admin
+      summary: Delete user
+      description: This can only be done by the admin.
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          description: ID of user that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: UserDTO deleted successfully
+          content: {}
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: UserDTO not found
+          content: {}
+  /students:
+    post:
+      tags:
+        - admin
+      summary: Add a new student
+      description: This can only be done by the admin.
+      operationId: addStudent
+      requestBody:
+        description: StudentDTO object that needs to be added to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentDTO'
+        required: true
+      responses:
+        "201":
+          description: StudentDTO added successfully
+          content: {}
+        "400":
+          description: Invalid input
+          content: {}
+      x-codegen-request-body-name: body
+  /students/{studentId}:
+    get:
+      tags:
+        - student
+      summary: Get student by ID
+      description: Returns a single student
+      operationId: getStudentById
+      parameters:
+        - name: studentId
+          in: path
+          description: ID of student to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentDTO'
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: StudentDTO not found
+          content: {}
+    put:
+      tags:
+        - admin
+      summary: Update an existing student
+      description: This can only be done by the admin.
+      operationId: updateStudent
+      parameters:
+        - name: studentId
+          in: path
+          description: ID of student that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated student object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentDTO'
+        required: true
+      responses:
+        "200":
+          description: StudentDTO updated successfully
+          content: {}
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: StudentDTO not found
+          content: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - admin
+      summary: Delete student
+      description: This can only be done by the admin.
+      operationId: deleteStudent
+      parameters:
+        - name: studentId
+          in: path
+          description: ID of student that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: StudentDTO deleted successfully
+          content: {}
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: StudentDTO not found
+          content: {}
+  /tutors:
+    post:
+      tags:
+        - admin
+      summary: Add a new tutor
+      description: This can only be done by the admin.
+      operationId: addTutor
+      requestBody:
+        description: Tutor object that needs to be added to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TutorDTO'
+        required: true
+      responses:
+        "201":
+          description: Tutor added successfully
+          content: {}
+        "400":
+          description: Invalid input
+          content: {}
+      x-codegen-request-body-name: body
+  /tutors/{tutorId}:
+    get:
+      tags:
+        - tutor
+      summary: Get tutor by ID
+      description: Returns a single tutor
+      operationId: getTutorById
+      parameters:
+        - name: tutorId
+          in: path
+          description: ID of tutor to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TutorDTO'
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Tutor not found
+          content: {}
+    put:
+      tags:
+        - admin
+      summary: Update an existing tutor
+      description: This can only be done by the admin.
+      operationId: updateTutor
+      parameters:
+        - name: tutorId
+          in: path
+          description: ID of tutor that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated tutor object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TutorDTO'
+        required: true
+      responses:
+        "200":
+          description: Tutor updated successfully
+          content: {}
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Tutor not found
+          content: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - admin
+      summary: Delete tutor
+      description: This can only be done by the admin.
+      operationId: deleteTutor
+      parameters:
+        - name: tutorId
+          in: path
+          description: ID of tutor that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Tutor deleted successfully
+          content: {}
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Tutor not found
+          content: {}
+  /subjects:
+    post:
+      tags:
+        - admin
+      summary: Add a new subject
+      description: This can only be done by the admin.
+      operationId: addSubject
+      requestBody:
+        description: SubjectDTO object that needs to be added to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubjectDTO'
+        required: true
+      responses:
+        "201":
+          description: SubjectDTO added successfully
+          content: {}
+        "400":
+          description: Invalid input
+          content: {}
+      x-codegen-request-body-name: body
+  /subjects/{subjectId}:
+    put:
+      tags:
+        - admin
+      summary: Update an existing subject
+      description: This can only be done by the admin.
+      operationId: updateSubject
+      parameters:
+        - name: subjectId
+          in: path
+          description: ID of subject that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated subject object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubjectDTO'
+        required: true
+      responses:
+        "200":
+          description: SubjectDTO updated successfully
+          content: {}
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: SubjectDTO not found
+          content: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - admin
+      summary: Delete subject
+      description: This can only be done by the admin.
+      operationId: deleteSubject
+      parameters:
+        - name: subjectId
+          in: path
+          description: ID of subject that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: SubjectDTO deleted successfully
+          content: {}
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: SubjectDTO not found
+          content: {}
+  /venues:
+    post:
+      tags:
+        - admin
+      summary: Add a new venue
+      description: This can only be done by the admin.
+      operationId: addVenue
+      requestBody:
+        description: Venue object that needs to be added to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationDTO'
+        required: true
+      responses:
+        "201":
+          description: Venue added successfully
+          content: {}
+        "400":
+          description: Invalid input
+          content: {}
+      x-codegen-request-body-name: body
+  /venues/{venueId}:
+    put:
+      tags:
+        - admin
+      summary: Update an existing venue
+      description: This can only be done by the admin.
+      operationId: updateVenue
+      parameters:
+        - name: venueId
+          in: path
+          description: ID of venue that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated venue object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationDTO'
+        required: true
+      responses:
+        "200":
+          description: Venue updated successfully
+          content: {}
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Venue not found
+          content: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - admin
+      summary: Delete venue
+      description: This can only be done by the admin.
+      operationId: deleteVenue
+      parameters:
+        - name: venueId
+          in: path
+          description: ID of venue that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Venue deleted successfully
+          content: {}
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Venue not found
+          content: {}
+  /sessions:
+    post:
+      tags:
+        - tutor
+      summary: Create a new session
+      description: This can only be done by the tutor.
+      operationId: createSession
+      requestBody:
+        description: Session object that needs to be added to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Session'
+        required: true
+      responses:
+        "201":
+          description: Session created successfully
+          content: {}
+        "400":
+          description: Invalid input
+          content: {}
+      x-codegen-request-body-name: body
+  /sessions/{sessionId}:
+    get:
+      tags:
+        - tutor
+      summary: Get session by ID
+      description: Returns a single session
+      operationId: getSessionById
+      parameters:
+        - name: sessionId
+          in: path
+          description: ID of session to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Session not found
+          content: {}
+  /bookings:
+    post:
+      tags:
+        - student
+      summary: Create a new booking
+      description: This can only be done by the student.
+      operationId: createBooking
+      requestBody:
+        description: BookingDTO object that needs to be added to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingDTO'
+        required: true
+      responses:
+        "201":
+          description: BookingDTO created successfully
+          content: {}
+        "400":
+          description: Invalid input
+          content: {}
+      x-codegen-request-body-name: body
+  /bookings/{bookingId}:
+    get:
+      tags:
+        - student
+      summary: Get booking by ID
+      description: Returns a single booking
+      operationId: getBookingById
+      parameters:
+        - name: bookingId
+          in: path
+          description: ID of booking to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingDTO'
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: BookingDTO not found
+          content: {}
+  /feedback:
+    post:
+      tags:
+        - student
+      summary: Add feedback
+      description: This can only be done by the student.
+      operationId: addFeedback
+      requestBody:
+        description: FeedbackDTO object that needs to be added to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedbackDTO'
+        required: true
+      responses:
+        "201":
+          description: FeedbackDTO added successfully
+          content: {}
+        "400":
+          description: Invalid input
+          content: {}
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    UserDTO:
+      required:
+        - email
+        - lastName
+        - name
+        - password
+        - phoneNumber
+        - role
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+          enum:
+            - Student
+            - Tutor
+            - Admin
+    StudentDTO:
+      required:
+        - email
+        - name
+        - phoneNumber
+        - studentNumber
+        - yearOfStudy
+      type: object
+      properties:
+        studentId:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        yearOfStudy:
+          type: integer
+          format: int64
+        studentNumber:
+          type: string
+        userId:
+          type: integer
+          format: int64
+    TutorDTO:
+      required:
+        - email
+        - name
+        - phoneNumber
+        - subject
+      type: object
+      properties:
+        tutorId:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        subject:
+          type: string
+        availability:
+          type: string
+          enum:
+            - Free
+            - Unavailable
+            - In Session
+        rating:
+          type: number
+          format: float
+        studentId:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+    SubjectDTO:
+      required:
+        - subjectCode
+        - subjectName
+      type: object
+      properties:
+        subjectId:
+          type: integer
+          format: int64
+        subjectCode:
+          type: string
+        subjectName:
+          type: string
+    BookingDTO:
+      required:
+        - date
+        - locationId
+        - studentId
+        - subjectId
+        - time
+        - topic
+        - tutorId
+      type: object
+      properties:
+        bookingId:
+          type: integer
+          format: int64
+        tutorId:
+          type: integer
+          format: int64
+        studentId:
+          type: integer
+          format: int64
+        subjectId:
+          type: integer
+          format: int64
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+          format: time
+        locationId:
+          type: integer
+          format: int64
+        topic:
+          type: string
+        status:
+          type: string
+          enum:
+            - Upcoming
+            - Past
+    LocationDTO:
+      required:
+        - building
+        - roomId
+      type: object
+      properties:
+        locationId:
+          type: integer
+          format: int64
+        roomId:
+          type: string
+        building:
+          type: string
+    Session:
+      required:
+        - bookingId
+        - date
+        - studentId
+        - time
+        - tutorId
+      type: object
+      properties:
+        sessionId:
+          type: integer
+          format: int64
+        bookingId:
+          type: integer
+          format: int64
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+          format: time
+        studentId:
+          type: integer
+          format: int64
+        tutorId:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+            - Upcoming
+            - Past
+    FeedbackDTO:
+      required:
+        - rating
+        - ratingDescription
+        - tutorName
+      type: object
+      properties:
+        feedbackId:
+          type: integer
+          format: int64
+        tutorName:
+          type: string
+        rating:
+          type: integer
+          format: int64
+        ratingDescription:
+          type: string
+        studentId:
+          type: integer
+          format: int64
+x-original-swagger-version: "2.0"
+  
