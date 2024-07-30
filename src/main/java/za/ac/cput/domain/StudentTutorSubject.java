@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
+@Deprecated
 @Entity
 public class StudentTutorSubject {
     @EmbeddedId

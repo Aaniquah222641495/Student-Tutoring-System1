@@ -2,18 +2,20 @@ package za.ac.cput.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Objects;
 
 @Entity
 @Getter
-@Setter
+@SuperBuilder
+@NoArgsConstructor
 @EqualsAndHashCode
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User {
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    protected Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Integer id;
     protected String firstName;
     protected String lastName;
     protected String password;

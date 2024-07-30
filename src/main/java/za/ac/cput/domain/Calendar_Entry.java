@@ -6,6 +6,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 import java.util.Date;
+@Deprecated
 @Entity
 public class Calendar_Entry {
     @Id

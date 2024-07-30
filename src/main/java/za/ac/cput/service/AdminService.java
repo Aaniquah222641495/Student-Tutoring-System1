@@ -9,8 +9,6 @@ import za.ac.cput.repository.AdminRepository;
 public class AdminService implements IService<Admin,Integer>{
 
     private final AdminRepository repository;
-    private ResourceService resourceService;
-    private MessageService messageService;
 
     @Autowired
     public AdminService(AdminRepository repository) {

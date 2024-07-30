@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
+@Deprecated
 @Entity
 public class Resource {
     @Id

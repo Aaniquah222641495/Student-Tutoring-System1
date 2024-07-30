@@ -14,14 +14,11 @@ import java.util.Set;
 @Table(name = "SUBJECT")
 public class Subject {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String subjectCode;
     private String name;
     private byte[] subjectGuide;
-
-    @OneToMany(mappedBy = "subject")
-    private Set<StudentTutorSubject> enrollments;
 
     public Subject() {}
 

@@ -4,12 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Entity
-@Builder
+@SuperBuilder
+@NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "admin_id")
 public class Admin extends User{
 
-    public Admin() {}
 
 }

@@ -6,7 +6,7 @@ import za.ac.cput.domain.Subject;
 
 import java.util.List;
 
-public interface SubjectRepository extends JpaRepository<Subject, String> {
+public interface SubjectRepository extends JpaRepository<Subject, Integer> {
 
     public List<Subject> findSubjectsBySubjectCodeContainingIgnoreCase(String subjectCode);
 

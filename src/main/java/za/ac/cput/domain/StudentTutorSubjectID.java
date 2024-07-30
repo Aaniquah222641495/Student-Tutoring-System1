@@ -6,6 +6,7 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Deprecated
 @Embeddable
 public class StudentTutorSubjectID implements Serializable {
     @Column(name = "student_id")

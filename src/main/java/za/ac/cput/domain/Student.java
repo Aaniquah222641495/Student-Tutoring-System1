@@ -7,21 +7,19 @@ import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Builder
+@SuperBuilder
 @Getter
+@NoArgsConstructor
 @Table(name="STUDENT")
 @PrimaryKeyJoinColumn(name = "student_id")
 public class Student extends User{
 
-    @OneToMany(mappedBy = "student")
-    private Set<StudentTutorSubject> enrollments;
-
-    public Student() {
-    }
 
 }
