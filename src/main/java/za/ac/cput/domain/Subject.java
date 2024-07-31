@@ -9,6 +9,8 @@ import java.util.Set;
 
 @Entity
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @EqualsAndHashCode
 @Table(name = "SUBJECT")
@@ -19,7 +21,5 @@ public class Subject {
     private String subjectCode;
     private String name;
     private byte[] subjectGuide;
-
-    public Subject() {}
 
 }

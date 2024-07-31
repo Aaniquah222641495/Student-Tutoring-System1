@@ -7,7 +7,6 @@ import za.ac.cput.repository.AdminRepository;
 
 @Service
 public class AdminService implements IService<Admin,Integer>{
-
     private final AdminRepository repository;
 
     @Autowired

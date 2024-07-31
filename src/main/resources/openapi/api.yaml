@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: StudentDTO Tutor BookingDTO Management System
+  title: Student Tutor Booking Management System
   description: This is a system allowing students and tutors to book in-person sessions
     at designated venues on campus.
   termsOfService: http://swagger.io/terms/
@@ -13,19 +13,19 @@ tags:
   - name: admin
     description: Admin management
   - name: student
-    description: StudentDTO management
+    description: Student management
   - name: tutor
     description: Tutor management
   - name: subject
-    description: SubjectDTO management
+    description: Subject management
   - name: venue
     description: Venue management
   - name: session
     description: Session management
   - name: booking
-    description: BookingDTO management
+    description: Booking management
   - name: feedback
-    description: FeedbackDTO management
+    description: Feedback management
 paths:
   /users:
     post:

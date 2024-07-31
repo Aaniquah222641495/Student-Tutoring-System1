@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @EqualsAndHashCode
 public class Booking {
@@ -25,10 +27,12 @@ public class Booking {
     @OneToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
+    @OneToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
     private String topic;
     public enum Status{UPCOMING, PAST}
     private Status status;
 
-    public Booking() {}
 
 }

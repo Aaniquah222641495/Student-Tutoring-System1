@@ -26,7 +26,10 @@ public class SubjectService implements IService<Subject,Integer> {
 
     @Override
     public Subject update(Subject object) {
-        return repository.save(object);
+        if(repository.findById(object.getId()).orElse(null)!= null) {
+            return repository.save(object);
+        }
+        else return null;
     }
 
     @Override

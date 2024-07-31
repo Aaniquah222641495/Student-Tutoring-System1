@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Entity
 @SuperBuilder
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name="TUTOR")
 @PrimaryKeyJoinColumn(name = "tutor_id")
