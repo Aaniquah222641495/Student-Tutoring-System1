@@ -5,15 +5,15 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter
 @SuperBuilder
-@AllArgsConstructor
-@NoArgsConstructor
+@ToString
 @PrimaryKeyJoinColumn(name = "admin_id")
 public class Admin extends User{
-
-
+    public Admin() {
+    }
 }

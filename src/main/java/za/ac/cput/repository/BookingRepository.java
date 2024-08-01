@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Booking;
 
 @Repository
-public interface BookingRepository extends JpaRepository<Booking, Integer> {
+public interface BookingRepository extends JpaRepository<Booking, Long> {
 }

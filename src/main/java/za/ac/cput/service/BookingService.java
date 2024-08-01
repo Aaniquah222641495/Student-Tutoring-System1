@@ -6,21 +6,22 @@ import za.ac.cput.domain.Booking;
 import za.ac.cput.repository.BookingRepository;
 
 @Service
-public class BookingService implements IService<Booking, Integer>{
+public class BookingService implements IService<Booking, Long>{
     private final BookingRepository repository;
 
     @Autowired
     public BookingService(BookingRepository repository) {
         this.repository = repository;
     }
+
     @Override
     public Booking create(Booking object) {
         return repository.save(object);
     }
 
     @Override
-    public Booking read(Integer integer) {
-        return repository.findById(integer).orElse(null);
+    public Booking read(Long aLong) {
+        return repository.findById(aLong).orElse(null);
     }
 
     @Override
@@ -32,7 +33,7 @@ public class BookingService implements IService<Booking, Integer>{
     }
 
     @Override
-    public void delete(Integer integer) {
-        repository.deleteById(integer);
+    public void delete(Long aLong) {
+        repository.deleteById(aLong);
     }
 }

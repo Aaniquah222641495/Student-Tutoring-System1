@@ -12,9 +12,9 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @SuperBuilder
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name="TUTOR")
 @PrimaryKeyJoinColumn(name = "tutor_id")
 public class Tutor extends User{
+    public Tutor() {
+    }
 }

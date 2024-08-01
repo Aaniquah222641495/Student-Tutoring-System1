@@ -6,7 +6,7 @@ import za.ac.cput.domain.Location;
 import za.ac.cput.repository.LocationRepository;
 
 @Service
-public class LocationService implements IService<Location, Integer> {
+public class LocationService implements IService<Location, Long> {
 
     private final LocationRepository repository;
 
@@ -14,14 +14,15 @@ public class LocationService implements IService<Location, Integer> {
     public LocationService(LocationRepository repository) {
         this.repository = repository;
     }
+
     @Override
     public Location create(Location object) {
         return repository.save(object);
     }
 
     @Override
-    public Location read(Integer integer) {
-        return repository.findById(integer).orElse(null);
+    public Location read(Long aLong) {
+        return repository.findById(aLong).orElse(null);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class LocationService implements IService<Location, Integer> {
     }
 
     @Override
-    public void delete(Integer integer) {
-        repository.deleteById(integer);
+    public void delete(Long aLong) {
+        repository.deleteById(aLong);
     }
 }

@@ -6,7 +6,7 @@ import za.ac.cput.domain.Admin;
 import za.ac.cput.repository.AdminRepository;
 
 @Service
-public class AdminService implements IService<Admin,Integer>{
+public class AdminService implements IService<Admin,Long>{
     private final AdminRepository repository;
 
     @Autowired
@@ -20,8 +20,8 @@ public class AdminService implements IService<Admin,Integer>{
     }
 
     @Override
-    public Admin read(Integer integer) {
-        return repository.findById(integer).orElse(null);
+    public Admin read(Long aLong) {
+        return repository.findById(aLong).orElse(null);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class AdminService implements IService<Admin,Integer>{
     }
 
     @Override
-    public void delete(Integer integer) {
-        repository.deleteById(integer);
+    public void delete(Long aLong) {
+        repository.deleteById(aLong);
     }
 }

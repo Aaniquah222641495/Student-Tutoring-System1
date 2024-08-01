@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Location;
 
 @Repository
-public interface LocationRepository extends JpaRepository<Location, Integer> {
+public interface LocationRepository extends JpaRepository<Location, Long> {
 }

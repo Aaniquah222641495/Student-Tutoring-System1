@@ -8,7 +8,7 @@ info:
     email: 222641495@mycput.ac.za
   version: 1.0.0
 servers:
-  - url: https://api.example.com/v1
+  - url: https://localhost:8080
 tags:
   - name: admin
     description: Admin management
@@ -139,6 +139,33 @@ paths:
         "404":
           description: UserDTO not found
           content: {}
+
+  /admin:
+    post:
+      tags:
+        - admin
+      summary: Create a new admin
+      description: This can only be done by the admin.
+      operationId: createAdmin
+      requestBody:
+        description: AdminDTO object that needs to be added to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminDTO'
+        required: true
+      responses:
+        "201":
+          description: AdminDTO created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminDTO'
+        "400":
+          description: Invalid input
+          content: { }
+      x-codegen-request-body-name: body
+
   /students:
     post:
       tags:
@@ -660,6 +687,29 @@ paths:
       x-codegen-request-body-name: body
 components:
   schemas:
+    AdminDTO:
+      required:
+        - email
+        - lastName
+        - name
+        - password
+        - phoneNumber
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        password:
+          type: string
     UserDTO:
       required:
         - email

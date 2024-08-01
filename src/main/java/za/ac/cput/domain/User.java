@@ -15,7 +15,7 @@ import lombok.experimental.SuperBuilder;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+    protected Long id;
     @NotNull
     protected String firstName;
     @NotNull

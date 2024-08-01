@@ -14,7 +14,7 @@ import lombok.*;
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String subjectCode;
     private String name;
     private byte[] subjectGuide;

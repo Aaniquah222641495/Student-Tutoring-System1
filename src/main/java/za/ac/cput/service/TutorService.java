@@ -6,7 +6,7 @@ import za.ac.cput.domain.Tutor;
 import za.ac.cput.repository.TutorRepository;
 
 @Service
-public class TutorService implements IService<Tutor, Integer>{
+public class TutorService implements IService<Tutor, Long>{
 
     private final TutorRepository repository;
 
@@ -21,8 +21,8 @@ public class TutorService implements IService<Tutor, Integer>{
     }
 
     @Override
-    public Tutor read(Integer integer) {
-        return repository.findById(integer).orElse(null);
+    public Tutor read(Long aLong) {
+        return repository.findById(aLong).orElse(null);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class TutorService implements IService<Tutor, Integer>{
     }
 
     @Override
-    public void delete(Integer integer) {
-        repository.deleteById(integer);
+    public void delete(Long aLong) {
+        repository.deleteById(aLong);
     }
 }

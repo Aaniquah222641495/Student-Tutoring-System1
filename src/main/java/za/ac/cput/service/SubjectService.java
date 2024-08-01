@@ -6,7 +6,7 @@ import za.ac.cput.domain.Subject;
 import za.ac.cput.repository.SubjectRepository;
 
 @Service
-public class SubjectService implements IService<Subject,Integer> {
+public class SubjectService implements IService<Subject,Long> {
     private final SubjectRepository repository;
 
     @Autowired
@@ -20,8 +20,8 @@ public class SubjectService implements IService<Subject,Integer> {
     }
 
     @Override
-    public Subject read(Integer integer) {
-        return repository.findById(integer).orElse(null);
+    public Subject read(Long aLong) {
+        return repository.findById(aLong).orElse(null);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class SubjectService implements IService<Subject,Integer> {
     }
 
     @Override
-    public void delete(Integer integer) {
-        repository.deleteById(integer);
+    public void delete(Long aLong) {
+        repository.deleteById(aLong);
     }
 }
