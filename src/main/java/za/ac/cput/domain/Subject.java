@@ -3,9 +3,6 @@ package za.ac.cput.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Builder
