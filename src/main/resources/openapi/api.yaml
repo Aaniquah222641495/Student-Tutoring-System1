@@ -44,7 +44,10 @@ paths:
       responses:
         "201":
           description: UserDTO created successfully
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDTO'
         "400":
           description: Invalid input
           content: {}
@@ -101,7 +104,10 @@ paths:
       responses:
         "200":
           description: UserDTO updated successfully
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDTO'
         "400":
           description: Invalid ID supplied
           content: {}
@@ -150,7 +156,10 @@ paths:
       responses:
         "201":
           description: StudentDTO added successfully
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentDTO'
         "400":
           description: Invalid input
           content: {}
@@ -207,7 +216,10 @@ paths:
       responses:
         "200":
           description: StudentDTO updated successfully
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentDTO'
         "400":
           description: Invalid ID supplied
           content: {}
@@ -256,7 +268,10 @@ paths:
       responses:
         "201":
           description: Tutor added successfully
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TutorDTO'
         "400":
           description: Invalid input
           content: {}
@@ -313,7 +328,10 @@ paths:
       responses:
         "200":
           description: Tutor updated successfully
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TutorDTO'
         "400":
           description: Invalid ID supplied
           content: {}
@@ -362,7 +380,10 @@ paths:
       responses:
         "201":
           description: SubjectDTO added successfully
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubjectDTO'
         "400":
           description: Invalid input
           content: {}
@@ -392,7 +413,10 @@ paths:
       responses:
         "200":
           description: SubjectDTO updated successfully
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubjectDTO'
         "400":
           description: Invalid ID supplied
           content: {}
@@ -441,7 +465,10 @@ paths:
       responses:
         "201":
           description: Venue added successfully
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationDTO'
         "400":
           description: Invalid input
           content: {}
@@ -471,7 +498,10 @@ paths:
       responses:
         "200":
           description: Venue updated successfully
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationDTO'
         "400":
           description: Invalid ID supplied
           content: {}
@@ -570,7 +600,10 @@ paths:
       responses:
         "201":
           description: BookingDTO created successfully
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingDTO'
         "400":
           description: Invalid input
           content: {}
@@ -780,7 +813,7 @@ components:
         locationId:
           type: integer
           format: int64
-        roomId:
+        room:
           type: string
         building:
           type: string
