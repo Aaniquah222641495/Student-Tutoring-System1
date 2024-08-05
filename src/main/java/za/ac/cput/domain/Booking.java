@@ -4,7 +4,8 @@ package za.ac.cput.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Builder
@@ -16,8 +17,9 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long booking_id;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private LocalDate date;
     @OneToOne
     @JoinColumn(name = "tutor_id")
     private Tutor tutor;

@@ -255,7 +255,7 @@ paths:
           content: { }
 
 
-  /students:
+  /student:
     post:
       tags:
         - admin
@@ -280,7 +280,7 @@ paths:
           description: Invalid input
           content: {}
       x-codegen-request-body-name: body
-  /students/{studentId}:
+  /student/{studentId}:
     get:
       tags:
         - student
@@ -367,7 +367,7 @@ paths:
         "404":
           description: StudentDTO not found
           content: {}
-  /tutors:
+  /tutor:
     post:
       tags:
         - admin
@@ -392,7 +392,7 @@ paths:
           description: Invalid input
           content: {}
       x-codegen-request-body-name: body
-  /tutors/{tutorId}:
+  /tutor/{tutorId}:
     get:
       tags:
         - tutor
@@ -479,7 +479,7 @@ paths:
         "404":
           description: Tutor not found
           content: {}
-  /subjects:
+  /subject:
     post:
       tags:
         - admin
@@ -504,7 +504,7 @@ paths:
           description: Invalid input
           content: {}
       x-codegen-request-body-name: body
-  /subjects/{subjectId}:
+  /subject/{subjectId}:
     put:
       tags:
         - admin
@@ -564,7 +564,7 @@ paths:
         "404":
           description: SubjectDTO not found
           content: {}
-  /venues:
+  /venue:
     post:
       tags:
         - admin
@@ -589,7 +589,7 @@ paths:
           description: Invalid input
           content: {}
       x-codegen-request-body-name: body
-  /venues/{venueId}:
+  /venue/{venueId}:
     put:
       tags:
         - admin
@@ -649,57 +649,8 @@ paths:
         "404":
           description: Venue not found
           content: {}
-  /sessions:
-    post:
-      tags:
-        - tutor
-      summary: Create a new session
-      description: This can only be done by the tutor.
-      operationId: createSession
-      requestBody:
-        description: Session object that needs to be added to the system
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Session'
-        required: true
-      responses:
-        "201":
-          description: Session created successfully
-          content: {}
-        "400":
-          description: Invalid input
-          content: {}
-      x-codegen-request-body-name: body
-  /sessions/{sessionId}:
-    get:
-      tags:
-        - tutor
-      summary: Get session by ID
-      description: Returns a single session
-      operationId: getSessionById
-      parameters:
-        - name: sessionId
-          in: path
-          description: ID of session to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Session'
-        "400":
-          description: Invalid ID supplied
-          content: {}
-        "404":
-          description: Session not found
-          content: {}
-  /bookings:
+
+  /booking:
     post:
       tags:
         - student
@@ -724,7 +675,7 @@ paths:
           description: Invalid input
           content: {}
       x-codegen-request-body-name: body
-  /bookings/{bookingId}:
+  /booking/{bookingId}:
     get:
       tags:
         - student
@@ -764,7 +715,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FeedbackDTO'
+              $ref: '#/components/schemas/ReviewDTO'
         required: true
       responses:
         "201":
@@ -833,9 +784,10 @@ components:
       required:
         - email
         - name
+        - lastName
+        - password
         - phoneNumber
         - studentNumber
-        - yearOfStudy
       type: object
       properties:
         studentId:
@@ -843,25 +795,25 @@ components:
           format: int64
         name:
           type: string
+        lastName:
+          type: string
         email:
           type: string
           format: email
         phoneNumber:
           type: string
-        yearOfStudy:
-          type: integer
-          format: int64
-        studentNumber:
+        password:
           type: string
-        userId:
+        studentNumber:
           type: integer
           format: int64
     TutorDTO:
       required:
         - email
         - name
+        - password
+        - lastName
         - phoneNumber
-        - subject
       type: object
       properties:
         tutorId:
@@ -869,28 +821,15 @@ components:
           format: int64
         name:
           type: string
+        lastName:
+          type: string
         email:
           type: string
           format: email
         phoneNumber:
           type: string
-        subject:
+        password:
           type: string
-        availability:
-          type: string
-          enum:
-            - Free
-            - Unavailable
-            - In Session
-        rating:
-          type: number
-          format: float
-        studentId:
-          type: integer
-          format: int64
-        userId:
-          type: integer
-          format: int64
     SubjectDTO:
       required:
         - subjectCode
@@ -910,7 +849,8 @@ components:
         - locationId
         - studentId
         - subjectId
-        - time
+        - startTime
+        - endTime
         - topic
         - tutorId
       type: object
@@ -930,7 +870,10 @@ components:
         date:
           type: string
           format: date
-        time:
+        startTime:
+          type: string
+          format: time
+        endTime:
           type: string
           format: time
         locationId:
@@ -938,11 +881,6 @@ components:
           format: int64
         topic:
           type: string
-        status:
-          type: string
-          enum:
-            - Upcoming
-            - Past
     LocationDTO:
       required:
         - building
@@ -956,39 +894,7 @@ components:
           type: string
         building:
           type: string
-    Session:
-      required:
-        - bookingId
-        - date
-        - studentId
-        - time
-        - tutorId
-      type: object
-      properties:
-        sessionId:
-          type: integer
-          format: int64
-        bookingId:
-          type: integer
-          format: int64
-        date:
-          type: string
-          format: date
-        time:
-          type: string
-          format: time
-        studentId:
-          type: integer
-          format: int64
-        tutorId:
-          type: integer
-          format: int64
-        status:
-          type: string
-          enum:
-            - Upcoming
-            - Past
-    FeedbackDTO:
+    ReviewDTO:
       required:
         - rating
         - ratingDescription
@@ -998,8 +904,9 @@ components:
         feedbackId:
           type: integer
           format: int64
-        tutorName:
-          type: string
+        tutorId:
+          type: integer
+          format: int64
         rating:
           type: integer
           format: int64
