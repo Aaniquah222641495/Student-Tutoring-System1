@@ -166,6 +166,95 @@ paths:
           content: { }
       x-codegen-request-body-name: body
 
+  /admin/{adminId}:
+    get:
+      tags:
+        - admin
+      summary: Get user by user ID
+      description: Returns a single user
+      operationId: getAdminById
+      parameters:
+        - name: adminId
+          in: path
+          description: ID of admin to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminDTO'
+        "400":
+          description: Invalid ID supplied
+          content: { }
+        "404":
+          description: UserDTO not found
+          content: { }
+    put:
+      tags:
+        - admin
+      summary: Update an existing admin
+      description: This can only be done by the admin.
+      operationId: updateAdmin
+      parameters:
+        - name: adminId
+          in: path
+          description: ID of user that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminDTO'
+        required: true
+      responses:
+        "200":
+          description: UserDTO updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminDTO'
+        "400":
+          description: Invalid ID supplied
+          content: { }
+        "404":
+          description: UserDTO not found
+          content: { }
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - admin
+      summary: Delete admin
+      description: This can only be done by the admin.
+      operationId: deleteAdmin
+      parameters:
+        - name: adminId
+          in: path
+          description: ID of user that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: UserDTO deleted successfully
+          content: { }
+        "400":
+          description: Invalid ID supplied
+          content: { }
+        "404":
+          description: UserDTO not found
+          content: { }
+
+
   /students:
     post:
       tags:

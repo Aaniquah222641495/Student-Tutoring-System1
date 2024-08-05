@@ -25,6 +25,7 @@ public class User {
     @NotNull
     protected String phoneNumber;
     @Column(unique = true)
+    @NotNull
     protected String email;
 
 

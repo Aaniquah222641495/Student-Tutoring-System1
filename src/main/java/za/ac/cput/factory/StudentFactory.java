@@ -13,4 +13,17 @@ public class StudentFactory {
                 .studentNumber(studentNumber)
                 .build();
     }
+
+    public Student createStudent(Long id,String firstName, String lastName,String phoneNumber, String password, String email, Long studentNumber) {
+        return Student.builder()
+                .id(id)
+                .firstName(firstName)
+                .lastName(lastName)
+                .phoneNumber(phoneNumber)
+                .password(password)
+                .email(email)
+                .studentNumber(studentNumber)
+                .build();
+    }
+
 }

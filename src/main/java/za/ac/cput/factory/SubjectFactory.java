@@ -10,4 +10,13 @@ public class SubjectFactory {
                 .build();
 
     }
+
+    public static Subject buildSubject(Long id, String subjectCode, String name){
+        return Subject.builder()
+                .id(id)
+                .subjectCode(subjectCode)
+                .name(name)
+                .build();
+
+    }
 }
