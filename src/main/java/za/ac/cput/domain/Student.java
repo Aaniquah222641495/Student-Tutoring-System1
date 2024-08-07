@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @SuperBuilder
 @Getter

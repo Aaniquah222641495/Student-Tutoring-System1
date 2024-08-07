@@ -18,14 +18,12 @@ tags:
     description: Tutor management
   - name: subject
     description: Subject management
-  - name: venue
-    description: Venue management
-  - name: session
-    description: Session management
+  - name: location
+    description: Location management
   - name: booking
     description: Booking management
-  - name: feedback
-    description: Feedback management
+  - name: review
+    description: review management
 paths:
   /users:
     post:
@@ -52,6 +50,7 @@ paths:
           description: Invalid input
           content: {}
       x-codegen-request-body-name: body
+
   /users/{userId}:
     get:
       tags:
@@ -254,11 +253,10 @@ paths:
           description: UserDTO not found
           content: { }
 
-
   /student:
     post:
       tags:
-        - admin
+        - student
       summary: Add a new student
       description: This can only be done by the admin.
       operationId: addStudent
@@ -280,6 +278,7 @@ paths:
           description: Invalid input
           content: {}
       x-codegen-request-body-name: body
+
   /student/{studentId}:
     get:
       tags:
@@ -310,7 +309,7 @@ paths:
           content: {}
     put:
       tags:
-        - admin
+        - student
       summary: Update an existing student
       description: This can only be done by the admin.
       operationId: updateStudent
@@ -345,7 +344,7 @@ paths:
       x-codegen-request-body-name: body
     delete:
       tags:
-        - admin
+        - student
       summary: Delete student
       description: This can only be done by the admin.
       operationId: deleteStudent
@@ -367,10 +366,11 @@ paths:
         "404":
           description: StudentDTO not found
           content: {}
+
   /tutor:
     post:
       tags:
-        - admin
+        - tutor
       summary: Add a new tutor
       description: This can only be done by the admin.
       operationId: addTutor
@@ -392,6 +392,7 @@ paths:
           description: Invalid input
           content: {}
       x-codegen-request-body-name: body
+
   /tutor/{tutorId}:
     get:
       tags:
@@ -422,7 +423,7 @@ paths:
           content: {}
     put:
       tags:
-        - admin
+        - tutor
       summary: Update an existing tutor
       description: This can only be done by the admin.
       operationId: updateTutor
@@ -457,7 +458,7 @@ paths:
       x-codegen-request-body-name: body
     delete:
       tags:
-        - admin
+        - tutor
       summary: Delete tutor
       description: This can only be done by the admin.
       operationId: deleteTutor
@@ -482,7 +483,7 @@ paths:
   /subject:
     post:
       tags:
-        - admin
+        - subject
       summary: Add a new subject
       description: This can only be done by the admin.
       operationId: addSubject
@@ -507,7 +508,7 @@ paths:
   /subject/{subjectId}:
     put:
       tags:
-        - admin
+        - subject
       summary: Update an existing subject
       description: This can only be done by the admin.
       operationId: updateSubject
@@ -542,7 +543,7 @@ paths:
       x-codegen-request-body-name: body
     delete:
       tags:
-        - admin
+        - subject
       summary: Delete subject
       description: This can only be done by the admin.
       operationId: deleteSubject
@@ -564,15 +565,15 @@ paths:
         "404":
           description: SubjectDTO not found
           content: {}
-  /venue:
+  /location:
     post:
       tags:
-        - admin
+        - location
       summary: Add a new venue
       description: This can only be done by the admin.
-      operationId: addVenue
+      operationId: addLocation
       requestBody:
-        description: Venue object that needs to be added to the system
+        description: Location object that needs to be added to the system
         content:
           application/json:
             schema:
@@ -580,7 +581,7 @@ paths:
         required: true
       responses:
         "201":
-          description: Venue added successfully
+          description: Location added successfully
           content:
             application/json:
               schema:
@@ -589,23 +590,44 @@ paths:
           description: Invalid input
           content: {}
       x-codegen-request-body-name: body
-  /venue/{venueId}:
+  /location/{locationId}:
+    get:
+      tags:
+        - location
+      summary: Get a venue by id
+      description: This retrieves a location by its id
+      operationId: getLocation
+      parameters:
+        - name: locationId
+          in: path
+          description: Id of location to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Location found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationDTO'
     put:
       tags:
-        - admin
-      summary: Update an existing venue
+        - location
+      summary: Update an existing location
       description: This can only be done by the admin.
-      operationId: updateVenue
+      operationId: updateLocation
       parameters:
-        - name: venueId
+        - name: locationId
           in: path
-          description: ID of venue that needs to be updated
+          description: ID of location that needs to be updated
           required: true
           schema:
             type: integer
             format: int64
       requestBody:
-        description: Updated venue object
+        description: Updated location object
         content:
           application/json:
             schema:
@@ -613,7 +635,7 @@ paths:
         required: true
       responses:
         "200":
-          description: Venue updated successfully
+          description: Location updated successfully
           content:
             application/json:
               schema:
@@ -622,38 +644,38 @@ paths:
           description: Invalid ID supplied
           content: {}
         "404":
-          description: Venue not found
+          description: Location not found
           content: {}
       x-codegen-request-body-name: body
     delete:
       tags:
-        - admin
-      summary: Delete venue
+        - location
+      summary: Delete location
       description: This can only be done by the admin.
-      operationId: deleteVenue
+      operationId: deleteLocation
       parameters:
-        - name: venueId
+        - name: locationId
           in: path
-          description: ID of venue that needs to be deleted
+          description: ID of Location that needs to be deleted
           required: true
           schema:
             type: integer
             format: int64
       responses:
         "200":
-          description: Venue deleted successfully
+          description: Location deleted successfully
           content: {}
         "400":
           description: Invalid ID supplied
           content: {}
         "404":
-          description: Venue not found
+          description: Location not found
           content: {}
 
   /booking:
     post:
       tags:
-        - student
+        - booking
       summary: Create a new booking
       description: This can only be done by the student.
       operationId: createBooking
@@ -678,7 +700,7 @@ paths:
   /booking/{bookingId}:
     get:
       tags:
-        - student
+        - booking
       summary: Get booking by ID
       description: Returns a single booking
       operationId: getBookingById
@@ -703,15 +725,71 @@ paths:
         "404":
           description: BookingDTO not found
           content: {}
-  /feedback:
+    put:
+      tags:
+        - booking
+      summary: Update a new booking
+      description: This can only be done by the student.
+      operationId: updateBooking
+      parameters:
+        - name: bookingId
+          in: path
+          description: ID of booking to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: BookingDTO object that needs to be updated on the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingDTO'
+        required: true
+      responses:
+        "201":
+          description: BookingDTO created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingDTO'
+        "400":
+          description: Invalid input
+          content: { }
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - booking
+      summary: Delete Booking by ID
+      description: Deletes a booking
+      operationId: deleteBooking
+      parameters:
+        - name: bookingId
+          in: path
+          description: ID of booking to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: successful operation
+          content: { }
+        "400":
+          description: Invalid ID supplied
+          content: { }
+        "404":
+          description: BookingDTO not found
+          content: { }
+  /review:
     post:
       tags:
-        - student
-      summary: Add feedback
+        - review
+      summary: Add review
       description: This can only be done by the student.
-      operationId: addFeedback
+      operationId: addReview
       requestBody:
-        description: FeedbackDTO object that needs to be added to the system
+        description: ReviewDTO object that needs to be added to the system
         content:
           application/json:
             schema:
@@ -719,12 +797,96 @@ paths:
         required: true
       responses:
         "201":
-          description: FeedbackDTO added successfully
-          content: {}
+          description: ReviewDTO added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewDTO'
         "400":
           description: Invalid input
           content: {}
       x-codegen-request-body-name: body
+  /review/{reviewId}:
+    get:
+      tags:
+        - review
+      summary: Get review by Id
+      description: Fetches data about a particular review
+      operationId: getReview
+      parameters:
+        - name: reviewId
+          in: path
+          description: Id of review to fetch
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: ReviewDTO retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewDTO'
+        "404":
+          description: Id not found
+          content: { }
+      x-codegen-request-body-name: body
+    put:
+      tags:
+        - review
+      summary: Update existing review
+      description: Updates based on ID provided in path
+      operationId: updateReview
+      parameters:
+        - name: reviewId
+          in: path
+          description: ID of review to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewDTO'
+        required: true
+      responses:
+        "200":
+          description: Review updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewDTO'
+        "400":
+          description: Invalid data
+          content: { }
+        "404":
+          description: Id not found
+          content: { }
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - review
+      summary: Delete existing review
+      description: deletes based on Id provided
+      operationId: deleteReview
+      parameters:
+        - name: reviewId
+          in: path
+          description: id of review to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: review deleted successfully
+          content: { }
+        404:
+          description: review not found
+          content: { }
 components:
   schemas:
     AdminDTO:
@@ -901,7 +1063,7 @@ components:
         - tutorName
       type: object
       properties:
-        feedbackId:
+        reviewId:
           type: integer
           format: int64
         tutorId:
@@ -909,8 +1071,8 @@ components:
           format: int64
         rating:
           type: integer
-          format: int64
-        ratingDescription:
+          format: int32
+        description:
           type: string
         studentId:
           type: integer

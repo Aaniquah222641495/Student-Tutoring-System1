@@ -1,6 +1,5 @@
 package za.ac.cput.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import za.ac.cput.api.AdminApiDelegate;
@@ -14,7 +13,6 @@ public class AdminController implements AdminApiDelegate {
 
     private AdminService service;
 
-    @Autowired
     public AdminController(AdminService service) {
         this.service = service;
     }

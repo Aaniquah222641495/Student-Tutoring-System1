@@ -3,6 +3,9 @@ package za.ac.cput.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+import java.util.Set;
+
 
 @Entity
 @Builder
@@ -18,5 +21,6 @@ public class Subject {
     private String subjectCode;
     private String name;
     private byte[] subjectGuide;
+
 
 }
