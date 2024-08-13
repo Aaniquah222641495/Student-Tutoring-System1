@@ -21,7 +21,7 @@ public class StudentController implements StudentApiDelegate {
 
     @Override
     public ResponseEntity<StudentDTO> addStudent(StudentDTO body) {
-        Student student = StudentFactory.createStudent(body.getName(),body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getStudentNumber());
+        Student student = StudentFactory.buildStudent(body.getName(),body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getStudentNumber());
         service.create(student);
         return ResponseEntity.ok().body(body);
     }
@@ -42,7 +42,7 @@ public class StudentController implements StudentApiDelegate {
 
     @Override
     public ResponseEntity<StudentDTO> updateStudent(Long studentId, StudentDTO body) {
-        Student student = StudentFactory.createStudent(studentId,body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getStudentNumber());
+        Student student = StudentFactory.buildStudent(studentId,body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getStudentNumber());
         service.update(student);
         body.setStudentId(student.getId());
         return ResponseEntity.ok().body(body);

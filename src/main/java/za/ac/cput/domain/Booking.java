@@ -1,9 +1,8 @@
 package za.ac.cput.domain;
 
-
 import jakarta.persistence.*;
 import lombok.*;
-
+import za.ac.cput.domain.enums.Status;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -33,7 +32,6 @@ public class Booking {
     @JoinColumn(name = "location_id")
     private Location location;
     private String topic;
-    public enum Status{UPCOMING, PAST}
     private Status status;
 
 
