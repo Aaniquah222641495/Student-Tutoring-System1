@@ -1,6 +1,7 @@
 package za.ac.cput.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import za.ac.cput.api.StudentApiDelegate;
 import za.ac.cput.domain.Student;
@@ -8,11 +9,11 @@ import za.ac.cput.dto.StudentDTO;
 import za.ac.cput.factory.StudentFactory;
 import za.ac.cput.service.StudentService;
 
+@CrossOrigin(origins = "http://localhost:5173", maxAge = 3600)
 @RestController
 public class StudentController implements StudentApiDelegate {
 
     private final StudentService service;
-
 
     public StudentController(StudentService service) {
         this.service = service;

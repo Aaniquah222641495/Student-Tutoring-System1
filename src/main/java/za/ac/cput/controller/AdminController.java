@@ -1,6 +1,7 @@
 package za.ac.cput.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import za.ac.cput.api.AdminApiDelegate;
 import za.ac.cput.domain.Admin;
@@ -8,6 +9,10 @@ import za.ac.cput.dto.AdminDTO;
 import za.ac.cput.factory.AdminFactory;
 import za.ac.cput.service.AdminService;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@CrossOrigin(origins = "http://localhost:5173", maxAge = 3600)
 @RestController
 public class AdminController implements AdminApiDelegate {
 
@@ -43,5 +48,16 @@ public class AdminController implements AdminApiDelegate {
         service.update(admin);
         body.setId(admin.getId());
         return ResponseEntity.ok().body(body);
+    }
+
+    @Override
+    public ResponseEntity<List<AdminDTO>> getAllAdmins() {
+        List<AdminDTO> list =new ArrayList<>();
+        for(Admin admin : service.getAll()){
+            AdminDTO dto = new AdminDTO(admin.getFirstName(),admin.getLastName(),admin.getEmail(),admin.getPhoneNumber(), admin.getPassword());
+            dto.setId(admin.getId());
+            list.add(dto);
+        }
+        return ResponseEntity.ok().body(list);
     }
 }

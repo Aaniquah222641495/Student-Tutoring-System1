@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Student;
 import za.ac.cput.repository.StudentRepository;
 
+import java.util.List;
+
 @Service
 public class StudentService implements IService<Student, Long> {
 
@@ -36,5 +38,10 @@ public class StudentService implements IService<Student, Long> {
     @Override
     public void delete(Long aLong) {
         repository.deleteById(aLong);
+    }
+
+    @Override
+    public List<Student> getAll() {
+        return repository.findAll();
     }
 }

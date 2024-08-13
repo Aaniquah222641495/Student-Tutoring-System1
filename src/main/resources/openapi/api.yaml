@@ -26,6 +26,24 @@ tags:
     description: review management
 paths:
   /users:
+    get:
+      tags:
+        - admin
+      summary: Get all users
+      description: Returns all users in the system
+      operationId: getAllUsers
+      responses:
+        '200':
+          description: Retrieved users successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDTO'
+        '400':
+          description: Error retrieving users
+          content: {}
     post:
       tags:
         - admin
@@ -140,6 +158,24 @@ paths:
           content: {}
 
   /admin:
+    get:
+      tags:
+        - admin
+      summary: Get all admin
+      description: Returns all admins in the system
+      operationId: getAllAdmins
+      responses:
+        '200':
+          description: Retrieved users successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdminDTO'
+        '400':
+          description: Error retrieving admins
+          content: { }
     post:
       tags:
         - admin
@@ -254,6 +290,24 @@ paths:
           content: { }
 
   /student:
+    get:
+      tags:
+        - student
+      summary: Get all student
+      description: Returns all student in the system
+      operationId: getAllStudents
+      responses:
+        '200':
+          description: Retrieved students successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentDTO'
+        '400':
+          description: Error retrieving students
+          content: { }
     post:
       tags:
         - student
@@ -368,6 +422,24 @@ paths:
           content: {}
 
   /tutor:
+    get:
+      tags:
+        - tutor
+      summary: Get all tutors
+      description: Returns all tutors in the system
+      operationId: getAllTutors
+      responses:
+        '200':
+          description: Retrieved tutors successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TutorDTO'
+        '400':
+          description: Error retrieving tutors
+          content: { }
     post:
       tags:
         - tutor
@@ -481,6 +553,24 @@ paths:
           description: Tutor not found
           content: {}
   /subject:
+    get:
+      tags:
+        - subject
+      summary: Get all subject
+      description: Returns all subjects in the system
+      operationId: getAllSubject
+      responses:
+        '200':
+          description: Retrieved subjects successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubjectDTO'
+        '400':
+          description: Error retrieving subjects
+          content: { }
     post:
       tags:
         - subject
@@ -566,6 +656,24 @@ paths:
           description: SubjectDTO not found
           content: {}
   /location:
+    get:
+      tags:
+        - location
+      summary: Get all location
+      description: Returns all locations in the system
+      operationId: getAllLocations
+      responses:
+        '200':
+          description: Retrieved locations successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LocationDTO'
+        '400':
+          description: Error retrieving locations
+          content: { }
     post:
       tags:
         - location
@@ -673,6 +781,24 @@ paths:
           content: {}
 
   /booking:
+    get:
+      tags:
+        - booking
+      summary: Get all bookings
+      description: Returns all bookings in the system
+      operationId: getAllBookings
+      responses:
+        '200':
+          description: Retrieved Bookings successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookingDTO'
+        '400':
+          description: Error retrieving bookings
+          content: { }
     post:
       tags:
         - booking
@@ -782,6 +908,24 @@ paths:
           description: BookingDTO not found
           content: { }
   /review:
+    get:
+      tags:
+        - review
+      summary: Get all reviews
+      description: Returns all admins in the system
+      operationId: getAllReviews
+      responses:
+        '200':
+          description: Retrieved reviews successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdminDTO'
+        '400':
+          description: Error retrieving admins
+          content: { }
     post:
       tags:
         - review

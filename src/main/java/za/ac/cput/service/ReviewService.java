@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Review;
 import za.ac.cput.repository.ReviewRepository;
 
+import java.util.List;
+
 @Service
 public class ReviewService implements IService<Review,Long> {
     private ReviewRepository repository;
@@ -35,5 +37,10 @@ public class ReviewService implements IService<Review,Long> {
     @Override
     public void delete(Long aLong) {
         repository.deleteById(aLong);
+    }
+
+    @Override
+    public List<Review> getAll() {
+        return repository.findAll();
     }
 }

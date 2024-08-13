@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Booking;
 import za.ac.cput.repository.BookingRepository;
 
+import java.util.List;
+
 @Service
 public class BookingService implements IService<Booking, Long>{
     private final BookingRepository repository;
@@ -35,5 +37,10 @@ public class BookingService implements IService<Booking, Long>{
     @Override
     public void delete(Long aLong) {
         repository.deleteById(aLong);
+    }
+
+    @Override
+    public List<Booking> getAll() {
+        return repository.findAll();
     }
 }

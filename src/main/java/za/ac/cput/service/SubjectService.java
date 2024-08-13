@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Subject;
 import za.ac.cput.repository.SubjectRepository;
 
+import java.util.List;
+
 @Service
 public class SubjectService implements IService<Subject,Long> {
     private final SubjectRepository repository;
@@ -35,5 +37,10 @@ public class SubjectService implements IService<Subject,Long> {
     @Override
     public void delete(Long aLong) {
         repository.deleteById(aLong);
+    }
+
+    @Override
+    public List<Subject> getAll() {
+        return repository.findAll();
     }
 }

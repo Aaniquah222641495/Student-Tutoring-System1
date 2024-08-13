@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Location;
 import za.ac.cput.repository.LocationRepository;
 
+import java.util.List;
+
 @Service
 public class LocationService implements IService<Location, Long> {
 
@@ -36,5 +38,10 @@ public class LocationService implements IService<Location, Long> {
     @Override
     public void delete(Long aLong) {
         repository.deleteById(aLong);
+    }
+
+    @Override
+    public List<Location> getAll() {
+        return repository.findAll();
     }
 }

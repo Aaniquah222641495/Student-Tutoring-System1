@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Admin;
 import za.ac.cput.repository.AdminRepository;
 
+import java.util.List;
+
 @Service
 public class AdminService implements IService<Admin,Long>{
     private final AdminRepository repository;
@@ -35,5 +37,10 @@ public class AdminService implements IService<Admin,Long>{
     @Override
     public void delete(Long aLong) {
         repository.deleteById(aLong);
+    }
+
+    @Override
+    public List<Admin> getAll() {
+        return repository.findAll();
     }
 }
