@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import za.ac.cput.api.ReviewApiDelegate;
 import za.ac.cput.domain.Review;
+import za.ac.cput.domain.Student;
+import za.ac.cput.domain.Tutor;
 import za.ac.cput.dto.ReviewDTO;
 import za.ac.cput.factory.ReviewFactory;
 import za.ac.cput.service.ReviewService;
@@ -67,5 +69,29 @@ public class ReviewController implements ReviewApiDelegate {
         service.update(review);
         body.setReviewId(reviewId);
         return ResponseEntity.ok().body(body);
+    }
+
+    @Override
+    public ResponseEntity<List<ReviewDTO>> getAllReviewsByStudent(Long studentId) {
+        List<ReviewDTO> list = new ArrayList<>();
+        Student student = studentService.read(studentId);
+        for(Review review: service.getReviewsByStudent(student)){
+            ReviewDTO dto = new ReviewDTO(review.getTutor().getId(), review.getRating(), review.getDescription(), review.getAuthor().getId());
+            dto.setReviewId(review.getId());
+            list.add(dto);
+        }
+        return ResponseEntity.ok().body(list);
+    }
+
+    @Override
+    public ResponseEntity<List<ReviewDTO>> getAllReviewsByTutor(Long tutorId) {
+        List<ReviewDTO> list = new ArrayList<>();
+        Tutor tutor = tutorService.read(tutorId);
+        for(Review review: service.getReviewsByTutor(tutor)){
+            ReviewDTO dto = new ReviewDTO(review.getTutor().getId(), review.getRating(), review.getDescription(), review.getAuthor().getId());
+            dto.setReviewId(review.getId());
+            list.add(dto);
+        }
+        return ResponseEntity.ok().body(list);
     }
 }

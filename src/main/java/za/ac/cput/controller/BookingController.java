@@ -4,8 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import za.ac.cput.api.BookingApiDelegate;
-import za.ac.cput.domain.Booking;
+import za.ac.cput.domain.*;
 import za.ac.cput.dto.BookingDTO;
+import za.ac.cput.dto.ReviewDTO;
 import za.ac.cput.factory.BookingFactory;
 import za.ac.cput.service.*;
 import java.time.LocalTime;
@@ -70,5 +71,51 @@ public class BookingController implements BookingApiDelegate {
         return ResponseEntity.ok().body(body);
     }
 
+    @Override
+    public ResponseEntity<List<BookingDTO>> getAllBookingsByLocation(Long locationId) {
+        List<BookingDTO> list = new ArrayList<>();
+        Location location = locationService.read(locationId);
+        for(Booking booking: service.findByLocation(location)){
+            BookingDTO dto = new BookingDTO(booking.getTutor().getId(),booking.getStudent().getId(), booking.getSubject().getId(), booking.getDate(), booking.getStartTime().toString(),booking.getEndTime().toString(),booking.getLocation().getLocationId(),booking.getTopic());
+            dto.setBookingId(booking.getBooking_id());
+            list.add(dto);
+        }
+        return ResponseEntity.ok().body(list);
+    }
 
+    @Override
+    public ResponseEntity<List<BookingDTO>> getAllBookingsByStudent(Long studentId) {
+        List<BookingDTO> list = new ArrayList<>();
+        Student student = studentService.read(studentId);
+        for(Booking booking: service.findByStudent(student)){
+            BookingDTO dto = new BookingDTO(booking.getTutor().getId(),booking.getStudent().getId(), booking.getSubject().getId(), booking.getDate(), booking.getStartTime().toString(),booking.getEndTime().toString(),booking.getLocation().getLocationId(),booking.getTopic());
+            dto.setBookingId(booking.getBooking_id());
+            list.add(dto);
+        }
+        return ResponseEntity.ok().body(list);
+    }
+
+    @Override
+    public ResponseEntity<List<BookingDTO>> getAllBookingsBySubject(Long subjectId) {
+        List<BookingDTO> list = new ArrayList<>();
+        Subject subject = subjectService.read(subjectId);
+        for(Booking booking: service.findBySubject(subject)){
+            BookingDTO dto = new BookingDTO(booking.getTutor().getId(),booking.getStudent().getId(), booking.getSubject().getId(), booking.getDate(), booking.getStartTime().toString(),booking.getEndTime().toString(),booking.getLocation().getLocationId(),booking.getTopic());
+            dto.setBookingId(booking.getBooking_id());
+            list.add(dto);
+        }
+        return ResponseEntity.ok().body(list);
+    }
+
+    @Override
+    public ResponseEntity<List<BookingDTO>> getAllBookingsByTutor(Long tutorId) {
+        List<BookingDTO> list = new ArrayList<>();
+        Tutor tutor = tutorService.read(tutorId);
+        for(Booking booking: service.findByTutor(tutor)){
+            BookingDTO dto = new BookingDTO(booking.getTutor().getId(),booking.getStudent().getId(), booking.getSubject().getId(), booking.getDate(), booking.getStartTime().toString(),booking.getEndTime().toString(),booking.getLocation().getLocationId(),booking.getTopic());
+            dto.setBookingId(booking.getBooking_id());
+            list.add(dto);
+        }
+        return ResponseEntity.ok().body(list);
+    }
 }

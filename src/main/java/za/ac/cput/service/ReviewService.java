@@ -3,6 +3,8 @@ package za.ac.cput.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Review;
+import za.ac.cput.domain.Student;
+import za.ac.cput.domain.Tutor;
 import za.ac.cput.repository.ReviewRepository;
 
 import java.util.List;
@@ -42,5 +44,13 @@ public class ReviewService implements IService<Review,Long> {
     @Override
     public List<Review> getAll() {
         return repository.findAll();
+    }
+
+    public List<Review> getReviewsByStudent(Student student) {
+        return repository.findAllByAuthor(student);
+    }
+
+    public List<Review> getReviewsByTutor(Tutor tutor) {
+        return repository.findAllByTutor(tutor);
     }
 }
