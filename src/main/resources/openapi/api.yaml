@@ -288,26 +288,26 @@ paths:
         "404":
           description: UserDTO not found
           content: { }
-  /admin/authenticate:
+  /admin/authenticate/{email}/{password}:
     get:
       tags:
         - admin
-      summary: authenticates admin
+      summary: authenticate admin
       description: Returns a single admin
       operationId: authenticateAdmin
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
-              required:
-                - email
-                - password
+      parameters:
+        - name: email
+          in: path
+          description: email of the Admin
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: path
+          description: password of the Admin
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: successful operation
@@ -449,26 +449,26 @@ paths:
         "404":
           description: StudentDTO not found
           content: {}
-  /student/authenticate:
+  /student/authenticate/{email}/{password}:
     get:
       tags:
         - student
       summary: authenticate student
-      description: Returns a single Student
+      description: Returns a single student
       operationId: authenticateStudent
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
-              required:
-                - email
-                - password
+      parameters:
+        - name: email
+          in: path
+          description: email of the Student
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: path
+          description: password of the Student
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: successful operation
@@ -611,26 +611,26 @@ paths:
           description: Tutor not found
           content: {}
 
-  /tutor/authenticate:
+  /tutor/authenticate/{email}/{password}:
     get:
       tags:
         - tutor
       summary: authenticate tutor
       description: Returns a single tutor
       operationId: authenticateTutor
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
-              required:
-                - email
-                - password
+      parameters:
+        - name: email
+          in: path
+          description: email of the Tutor
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: path
+          description: password of the Tutor
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: successful operation

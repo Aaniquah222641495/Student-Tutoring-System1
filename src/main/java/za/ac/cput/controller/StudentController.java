@@ -24,6 +24,7 @@ public class StudentController implements StudentApiDelegate {
     @Override
     public ResponseEntity<StudentDTO> addStudent(StudentDTO body) {
         Student student = StudentFactory.buildStudent(body.getName(),body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getStudentNumber());
+        if(student==null) return ResponseEntity.badRequest().body(null);
         service.create(student);
         return ResponseEntity.ok().body(body);
     }
@@ -36,7 +37,7 @@ public class StudentController implements StudentApiDelegate {
 
     @Override
     public ResponseEntity<List<StudentDTO>> getAllStudents() {
-        List<StudentDTO> list =new ArrayList<>();
+        List<StudentDTO> list = new ArrayList<>();
         for(Student student : service.getAll()){
             StudentDTO dto = new StudentDTO(student.getFirstName(), student.getLastName(), student.getEmail(),student.getPhoneNumber(),student.getPassword(), student.getStudentNumber());
             dto.setStudentId(student.getId());
@@ -48,16 +49,28 @@ public class StudentController implements StudentApiDelegate {
     @Override
     public ResponseEntity<StudentDTO> getStudentById(Long studentId) {
         Student student = service.read(studentId);
+        if(student == null) return ResponseEntity.notFound().build();
         StudentDTO dto = new StudentDTO(student.getFirstName(),student.getLastName(),student.getEmail(),student.getPhoneNumber(), student.getPassword(),student.getStudentNumber());
-        dto.setStudentId(studentId);
+        dto.setStudentId(student.getId());
         return ResponseEntity.ok().body(dto);
     }
 
     @Override
     public ResponseEntity<StudentDTO> updateStudent(Long studentId, StudentDTO body) {
         Student student = StudentFactory.buildStudent(studentId,body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getStudentNumber());
+        if(student==null) return ResponseEntity.notFound().build();
         service.update(student);
         body.setStudentId(student.getId());
         return ResponseEntity.ok().body(body);
+    }
+
+    @Override
+    public ResponseEntity<StudentDTO> authenticateStudent(String email, String password) {
+        Student student = service.authenticate(email, password);
+        if (student == null) return ResponseEntity.badRequest().body(null);
+        StudentDTO dto = new StudentDTO(student.getFirstName(),student.getLastName(),student.getEmail(),student.getPhoneNumber(), student.getPassword(),student.getStudentNumber());
+        dto.setStudentId(student.getId());
+        return ResponseEntity.ok().body(dto);
+
     }
 }

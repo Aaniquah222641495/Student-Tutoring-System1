@@ -60,4 +60,13 @@ public class TutorController implements TutorApiDelegate {
         body.setTutorId(tutor.getId());
         return ResponseEntity.ok().body(body);
     }
+
+    @Override
+    public ResponseEntity<TutorDTO> authenticateTutor(String email, String password) {
+        Tutor tutor = service.authenticate(email, email);
+        if(tutor==null) return ResponseEntity.badRequest().body(null);
+        TutorDTO dto = new TutorDTO(tutor.getFirstName(), tutor.getLastName(), tutor.getEmail(),tutor.getPhoneNumber(),tutor.getPassword());
+        dto.setTutorId(tutor.getId());
+        return ResponseEntity.ok().body(dto);
+    }
 }

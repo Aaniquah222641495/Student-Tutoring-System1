@@ -44,4 +44,8 @@ public class TutorService implements IService<Tutor, Long>{
     public List<Tutor> getAll() {
         return repository.findAll();
     }
+
+    public Tutor authenticate(String email, String password) {
+        return repository.findByEmailAndPassword(email, password);
+    }
 }

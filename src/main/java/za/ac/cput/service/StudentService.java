@@ -3,6 +3,7 @@ package za.ac.cput.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Student;
+import za.ac.cput.domain.Tutor;
 import za.ac.cput.repository.StudentRepository;
 
 import java.util.List;
@@ -43,5 +44,9 @@ public class StudentService implements IService<Student, Long> {
     @Override
     public List<Student> getAll() {
         return repository.findAll();
+    }
+
+    public Student authenticate(String email, String password) {
+        return repository.findByEmailAndPassword(email, password);
     }
 }

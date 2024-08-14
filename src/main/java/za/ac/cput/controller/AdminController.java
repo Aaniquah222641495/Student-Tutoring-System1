@@ -60,4 +60,13 @@ public class AdminController implements AdminApiDelegate {
         }
         return ResponseEntity.ok().body(list);
     }
+
+    @Override
+    public ResponseEntity<AdminDTO> authenticateAdmin(String email, String password) {
+        Admin admin = service.authenticate(email,password);
+        if(admin == null) return ResponseEntity.badRequest().body(null);
+        AdminDTO dto = new AdminDTO(admin.getFirstName(),admin.getLastName(),admin.getEmail(),admin.getPhoneNumber(), admin.getPassword());
+        dto.setId(admin.getId());
+        return ResponseEntity.ok().body(dto);
+    }
 }
