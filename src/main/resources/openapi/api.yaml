@@ -1244,6 +1244,8 @@ components:
         rating:
           type: integer
           format: int32
+          maximum: 5
+          minimum: 0
         description:
           type: string
         studentId:

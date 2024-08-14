@@ -1,6 +1,8 @@
 package za.ac.cput.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -17,6 +19,8 @@ public class Review {
     @NotNull
     private String description;
     @NotNull
+    @Min(0)
+    @Max(5)
     private Integer rating;
     @JoinColumn(name = "student_id")
     @OneToOne(cascade = CascadeType.ALL)
