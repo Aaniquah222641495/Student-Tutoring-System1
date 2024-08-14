@@ -288,7 +288,36 @@ paths:
         "404":
           description: UserDTO not found
           content: { }
-
+  /admin/authenticate:
+    get:
+      tags:
+        - admin
+      summary: authenticates admin
+      description: Returns a single admin
+      operationId: authenticateAdmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminDTO'
+        "400":
+          description: Invalid login
+          content: { }
   /student:
     get:
       tags:
@@ -420,7 +449,36 @@ paths:
         "404":
           description: StudentDTO not found
           content: {}
-
+  /student/authenticate:
+    get:
+      tags:
+        - student
+      summary: authenticate student
+      description: Returns a single Student
+      operationId: authenticateStudent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentDTO'
+        "400":
+          description: Invalid login
+          content: { }
   /tutor:
     get:
       tags:
@@ -552,6 +610,37 @@ paths:
         "404":
           description: Tutor not found
           content: {}
+
+  /tutor/authenticate:
+    get:
+      tags:
+        - tutor
+      summary: authenticate tutor
+      description: Returns a single tutor
+      operationId: authenticateTutor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TutorDTO'
+        "400":
+          description: Invalid login
+          content: { }
   /subject:
     get:
       tags:
