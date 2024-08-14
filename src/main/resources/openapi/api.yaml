@@ -949,7 +949,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AdminDTO'
+                  $ref: '#/components/schemas/ReviewDTO'
         '400':
           description: Error retrieving admins
           content: { }
@@ -1217,7 +1217,7 @@ components:
     LocationDTO:
       required:
         - building
-        - roomId
+        - room
       type: object
       properties:
         locationId:
@@ -1230,8 +1230,9 @@ components:
     ReviewDTO:
       required:
         - rating
-        - ratingDescription
-        - tutorName
+        - description
+        - tutorId
+        - studentId
       type: object
       properties:
         reviewId:

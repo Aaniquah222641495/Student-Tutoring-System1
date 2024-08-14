@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class BookingFactory {
-    public Booking buildBooking(Long id, LocalTime startTime, LocalTime endTime, LocalDate date, Tutor tutor, Student student, Subject subject, Location location, String topic, Status status){
+    public static Booking buildBooking(Long id, LocalTime startTime, LocalTime endTime, LocalDate date, Tutor tutor, Student student, Subject subject, Location location, String topic){
         return Booking.builder()
                 .booking_id(id)
                 .startTime(startTime)
@@ -18,11 +18,10 @@ public class BookingFactory {
                 .subject(subject)
                 .location(location)
                 .topic(topic)
-                .status(status)
                 .build();
 
     }
-    public Booking buildBooking(LocalTime startTime, LocalTime endTime, LocalDate date, Tutor tutor, Student student, Subject subject, Location location, String topic, Status status){
+    public static Booking buildBooking(LocalTime startTime, LocalTime endTime, LocalDate date, Tutor tutor, Student student, Subject subject, Location location, String topic){
         return Booking.builder()
                 .startTime(startTime)
                 .endTime(endTime)
@@ -32,7 +31,6 @@ public class BookingFactory {
                 .subject(subject)
                 .location(location)
                 .topic(topic)
-                .status(status)
                 .build();
 
     }

@@ -4,14 +4,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import za.ac.cput.api.TutorApiDelegate;
-import za.ac.cput.domain.Admin;
 import za.ac.cput.domain.Tutor;
-import za.ac.cput.dto.AdminDTO;
 import za.ac.cput.dto.TutorDTO;
-import za.ac.cput.factory.StudentFactory;
 import za.ac.cput.factory.TutorFactory;
 import za.ac.cput.service.TutorService;
-
 import java.util.ArrayList;
 import java.util.List;
 

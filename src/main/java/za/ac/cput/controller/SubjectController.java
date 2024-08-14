@@ -47,11 +47,17 @@ public class SubjectController implements SubjectApiDelegate {
 
     @Override
     public ResponseEntity<SubjectDTO> getSubjectById(Long subjectId) {
-        return SubjectApiDelegate.super.getSubjectById(subjectId);
+        Subject subject = service.read(subjectId);
+        SubjectDTO dto = new SubjectDTO(subject.getSubjectCode(), subject.getName());
+        dto.setSubjectId(subject.getId());
+        return ResponseEntity.ok().body(dto);
     }
 
     @Override
     public ResponseEntity<SubjectDTO> updateSubject(Long subjectId, SubjectDTO body) {
-        return SubjectApiDelegate.super.updateSubject(subjectId, body);
+        Subject subject = SubjectFactory.buildSubject(subjectId, body.getSubjectCode(),body.getSubjectName());
+        service.update(subject);
+        body.setSubjectId(subject.getId());
+        return ResponseEntity.ok().body(body);
     }
 }

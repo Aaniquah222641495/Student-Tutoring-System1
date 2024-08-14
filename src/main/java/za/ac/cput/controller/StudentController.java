@@ -5,12 +5,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import za.ac.cput.api.StudentApiDelegate;
 import za.ac.cput.domain.Student;
-import za.ac.cput.domain.Tutor;
 import za.ac.cput.dto.StudentDTO;
-import za.ac.cput.dto.TutorDTO;
 import za.ac.cput.factory.StudentFactory;
 import za.ac.cput.service.StudentService;
-
 import java.util.ArrayList;
 import java.util.List;
 
