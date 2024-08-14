@@ -4,7 +4,7 @@ import za.ac.cput.domain.Admin;
 import za.ac.cput.domain.Tutor;
 
 public class TutorFactory {
-    public static Tutor buildAdmin(String firstName, String lastName, String phoneNumber, String password, String email){
+    public static Tutor buildTutor(String firstName, String lastName, String phoneNumber, String password, String email){
         return Tutor.builder()
                 .firstName(firstName)
                 .lastName(lastName)
@@ -14,7 +14,7 @@ public class TutorFactory {
                 .build();
 
     }
-    public static Tutor buildAdmin(Long id, String firstName, String lastName, String phoneNumber, String password, String email){
+    public static Tutor buildTutor(Long id, String firstName, String lastName, String phoneNumber, String password, String email){
         return Tutor.builder()
                 .id(id)
                 .firstName(firstName)

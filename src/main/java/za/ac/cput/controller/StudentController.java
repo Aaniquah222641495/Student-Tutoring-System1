@@ -5,9 +5,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import za.ac.cput.api.StudentApiDelegate;
 import za.ac.cput.domain.Student;
+import za.ac.cput.domain.Tutor;
 import za.ac.cput.dto.StudentDTO;
+import za.ac.cput.dto.TutorDTO;
 import za.ac.cput.factory.StudentFactory;
 import za.ac.cput.service.StudentService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:5173", maxAge = 3600)
 @RestController
@@ -30,6 +35,17 @@ public class StudentController implements StudentApiDelegate {
     public ResponseEntity<Void> deleteStudent(Long studentId) {
         service.delete(studentId);
         return ResponseEntity.ok().body(null);
+    }
+
+    @Override
+    public ResponseEntity<List<StudentDTO>> getAllStudents() {
+        List<StudentDTO> list =new ArrayList<>();
+        for(Student student : service.getAll()){
+            StudentDTO dto = new StudentDTO(student.getFirstName(), student.getLastName(), student.getEmail(),student.getPhoneNumber(),student.getPassword(), student.getStudentNumber());
+            dto.setStudentId(student.getId());
+            list.add(dto);
+        }
+        return ResponseEntity.ok().body(list);
     }
 
     @Override
