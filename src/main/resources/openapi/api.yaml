@@ -934,6 +934,114 @@ paths:
         "404":
           description: BookingDTO not found
           content: { }
+  /booking/student/{studentId}:
+    get:
+      tags:
+        - booking
+      summary: Get all bookings for a particular student
+      description: Returns all bookings for a student in the system
+      operationId: getAllBookingsByStudent
+      parameters:
+        - name: studentId
+          in: path
+          description: Id of the student
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Retrieved bookings successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookingDTO'
+        '400':
+          description: Error retrieving bookings
+          content: { }
+  /booking/location/{locationId}:
+    get:
+      tags:
+        - booking
+      summary: Get all bookings for a particular location
+      description: Returns all bookings for a location in the system
+      operationId: getAllBookingsByLocation
+      parameters:
+        - name: locationId
+          in: path
+          description: Id of the Location
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Retrieved bookings successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookingDTO'
+        '400':
+          description: Error retrieving bookings
+          content: { }
+  /booking/subject/{subjectId}:
+    get:
+      tags:
+        - booking
+      summary: Get all bookings for a particular subject
+      description: Returns all bookings for a subject in the system
+      operationId: getAllBookingsBySubject
+      parameters:
+        - name: subjectId
+          in: path
+          description: Id of the subject
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Retrieved bookings successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookingDTO'
+        '400':
+          description: Error retrieving bookings
+          content: { }
+  /booking/tutor/{tutorId}:
+    get:
+      tags:
+        - booking
+      summary: Get all bookings for a particular tutor
+      description: Returns all bookings for a tutor in the system
+      operationId: getAllBookingsByTutor
+      parameters:
+        - name: tutorId
+          in: path
+          description: Id of the tutor
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Retrieved bookings successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookingDTO'
+        '400':
+          description: Error retrieving bookings
+          content: { }
   /review:
     get:
       tags:
@@ -1057,6 +1165,60 @@ paths:
           content: { }
         404:
           description: review not found
+          content: { }
+  /review/tutor/{tutorId}:
+    get:
+      tags:
+        - review
+      summary: Get all reviews for a particular tutor
+      description: Returns all reviews for a tutor in the system
+      operationId: getAllReviewsByTutor
+      parameters:
+        - name: tutorId
+          in: path
+          description: Id of the tutor
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Retrieved reviews successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReviewDTO'
+        '400':
+          description: Error retrieving reviews
+          content: { }
+  /review/student/{studentId}:
+    get:
+      tags:
+        - review
+      summary: Get all reviews for a particular student
+      description: Returns all reviews for a student in the system
+      operationId: getAllReviewsByStudent
+      parameters:
+        - name: studentId
+          in: path
+          description: Id of the student
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Retrieved reviews successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReviewDTO'
+        '400':
+          description: Error retrieving reviews
           content: { }
 components:
   schemas:

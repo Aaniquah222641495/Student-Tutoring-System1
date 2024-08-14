@@ -69,4 +69,6 @@ public class BookingController implements BookingApiDelegate {
         body.setBookingId(booking.getBooking_id());
         return ResponseEntity.ok().body(body);
     }
+
+
 }
