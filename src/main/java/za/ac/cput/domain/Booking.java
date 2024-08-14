@@ -19,17 +19,17 @@ public class Booking {
     private LocalTime startTime;
     private LocalTime endTime;
     private LocalDate date;
-    @OneToOne
-    @JoinColumn(name = "tutor_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tutor_id", referencedColumnName = "tutor_id")
     private Tutor tutor;
-    @OneToOne
-    @JoinColumn(name = "student_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
     private Student student;
-    @OneToOne
-    @JoinColumn(name = "subject_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
     private Subject subject;
-    @OneToOne
-    @JoinColumn(name = "location_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id", referencedColumnName = "location_id")
     private Location location;
     private String topic;
     private Status status;

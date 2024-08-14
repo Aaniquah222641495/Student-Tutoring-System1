@@ -15,6 +15,7 @@ import java.util.Set;
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "location_id")
     private Long locationId;
     private String room;
     private String building;

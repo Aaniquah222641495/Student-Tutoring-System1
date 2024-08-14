@@ -12,6 +12,11 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @EqualsAndHashCode
+@Table(uniqueConstraints = {
+        @UniqueConstraint(
+                name = "UniqueStudentAndTutor" , columnNames = {"tutor_id" ," student_id"}
+        )
+})
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +27,12 @@ public class Review {
     @Min(0)
     @Max(5)
     private Integer rating;
-    @JoinColumn(name = "student_id")
-    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     @NotNull
     private Student author;
-    @JoinColumn(name = "tutor_id")
-    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tutor_id", referencedColumnName = "tutor_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     @NotNull
     private Tutor tutor;
 }

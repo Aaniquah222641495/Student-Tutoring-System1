@@ -23,6 +23,7 @@ public class User {
     @NotNull
     protected String password;
     @NotNull
+    @Column(unique = true)
     protected String phoneNumber;
     @Column(unique = true)
     @NotNull
