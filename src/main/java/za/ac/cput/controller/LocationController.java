@@ -8,7 +8,6 @@ import za.ac.cput.domain.Location;
 import za.ac.cput.dto.LocationDTO;
 import za.ac.cput.factory.LocationFactory;
 import za.ac.cput.service.LocationService;
-
 import java.util.ArrayList;
 import java.util.List;
 
