@@ -8,7 +8,7 @@ info:
     email: 222641495@mycput.ac.za
   version: 1.0.0
 servers:
-  - url: https://localhost:8080
+  - url: http://localhost:8080
 tags:
   - name: admin
     description: Admin management
