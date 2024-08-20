@@ -8,7 +8,7 @@ import java.time.LocalTime;
 public class BookingFactory {
     public static Booking buildBooking(Long id, LocalTime startTime, LocalTime endTime, LocalDate date, Tutor tutor, Student student, Subject subject, Location location, String topic){
         return Booking.builder()
-                .booking_id(id)
+                .bookingId(id)
                 .startTime(startTime)
                 .endTime(endTime)
                 .date(date)
