@@ -29,12 +29,14 @@ public class TutorController implements TutorApiDelegate {
     @Override
     public ResponseEntity<TutorDTO> addTutor(TutorDTO body) {
         Set<Subject> list = new HashSet<>();
-        for(SubjectDTO dto: body.getAssignedSubjects()){
-            Subject subject = SubjectFactory.buildSubject(dto.getSubjectId(), dto.getSubjectCode(), dto.getSubjectName());
-            list.add(subject);
+        if(body.getAssignedSubjects()!=null) {
+            for (SubjectDTO dto : body.getAssignedSubjects()) {
+                Subject subject = SubjectFactory.buildSubject(dto.getSubjectId(), dto.getSubjectCode(), dto.getSubjectName());
+                list.add(subject);
+            }
         }
         Tutor tutor = TutorFactory.buildTutor(body.getName(),body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), list);
-        service.create(tutor);
+        body.setTutorId(service.create(tutor).getId());
         return ResponseEntity.ok().body(body);
 
     }
@@ -67,6 +69,7 @@ public class TutorController implements TutorApiDelegate {
         dto.setTutorId(tutor.getId());
         for(Subject subject : tutor.getAssignedSubjects()) {
             SubjectDTO subjectDTO = new SubjectDTO(subject.getSubjectCode(), subject.getName());
+            subjectDTO.setSubjectId(subject.getSubjectId());
             dto.addAssignedSubjectsItem(subjectDTO);
         }
         return ResponseEntity.ok().body(dto);
@@ -75,9 +78,11 @@ public class TutorController implements TutorApiDelegate {
     @Override
     public ResponseEntity<TutorDTO> updateTutor(Long tutorId, TutorDTO body) {
         Set<Subject> list = new HashSet<>();
-        for(SubjectDTO dto: body.getAssignedSubjects()){
-            Subject subject = SubjectFactory.buildSubject(dto.getSubjectId(), dto.getSubjectCode(), dto.getSubjectName());
-            list.add(subject);
+        if(body.getAssignedSubjects()!=null) {
+            for (SubjectDTO dto : body.getAssignedSubjects()) {
+                Subject subject = SubjectFactory.buildSubject(dto.getSubjectId(), dto.getSubjectCode(), dto.getSubjectName());
+                list.add(subject);
+            }
         }
         Tutor tutor = TutorFactory.buildTutor(tutorId,body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), list);
         service.update(tutor);
