@@ -4,7 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import za.ac.cput.api.TutorApiDelegate;
+import za.ac.cput.domain.Subject;
 import za.ac.cput.domain.Tutor;
+import za.ac.cput.dto.SubjectDTO;
 import za.ac.cput.dto.TutorDTO;
 import za.ac.cput.factory.TutorFactory;
 import za.ac.cput.service.TutorService;
@@ -41,6 +43,10 @@ public class TutorController implements TutorApiDelegate {
             TutorDTO dto = new TutorDTO(tutor.getFirstName(), tutor.getLastName(), tutor.getEmail(),tutor.getPhoneNumber(),tutor.getPassword());
             dto.setTutorId(tutor.getId());
             list.add(dto);
+            for(Subject subject : tutor.getAssignedSubjects()) {
+                SubjectDTO subjectDTO = new SubjectDTO(subject.getSubjectCode(), subject.getName());
+                dto.addAssignedSubjectsItem(subjectDTO);
+            }
         }
         return ResponseEntity.ok().body(list);
     }
@@ -50,6 +56,10 @@ public class TutorController implements TutorApiDelegate {
         Tutor tutor= service.read(tutorId);
         TutorDTO dto = new TutorDTO(tutor.getFirstName(), tutor.getLastName(), tutor.getEmail(),tutor.getPhoneNumber(),tutor.getPassword());
         dto.setTutorId(tutor.getId());
+        for(Subject subject : tutor.getAssignedSubjects()) {
+            SubjectDTO subjectDTO = new SubjectDTO(subject.getSubjectCode(), subject.getName());
+            dto.addAssignedSubjectsItem(subjectDTO);
+        }
         return ResponseEntity.ok().body(dto);
     }
 

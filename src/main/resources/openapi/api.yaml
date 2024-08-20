@@ -1414,6 +1414,11 @@ components:
           type: string
         password:
           type: string
+        assignedSubjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubjectDTO'
+          uniqueItems: true
     SubjectDTO:
       required:
         - subjectCode

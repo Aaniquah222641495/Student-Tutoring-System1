@@ -21,5 +21,4 @@ public class Subject {
     private String name;
     private byte[] subjectGuide;
 
-
 }
