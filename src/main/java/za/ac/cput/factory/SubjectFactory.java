@@ -11,9 +11,9 @@ public class SubjectFactory {
 
     }
 
-    public static Subject buildSubject(Long id, String subjectCode, String name){
+    public static Subject buildSubject(Long subjectId, String subjectCode, String name){
         return Subject.builder()
-                .id(id)
+                .subjectId(subjectId)
                 .subjectCode(subjectCode)
                 .name(name)
                 .build();

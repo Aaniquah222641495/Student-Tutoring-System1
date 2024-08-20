@@ -8,10 +8,14 @@ import za.ac.cput.domain.Subject;
 import za.ac.cput.domain.Tutor;
 import za.ac.cput.dto.SubjectDTO;
 import za.ac.cput.dto.TutorDTO;
+import za.ac.cput.factory.SubjectFactory;
 import za.ac.cput.factory.TutorFactory;
 import za.ac.cput.service.TutorService;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "http://localhost:5173", maxAge = 3600)
 @RestController
@@ -24,7 +28,12 @@ public class TutorController implements TutorApiDelegate {
 
     @Override
     public ResponseEntity<TutorDTO> addTutor(TutorDTO body) {
-        Tutor tutor = TutorFactory.buildTutor(body.getName(),body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail());
+        Set<Subject> list = new HashSet<>();
+        for(SubjectDTO dto: body.getAssignedSubjects()){
+            Subject subject = SubjectFactory.buildSubject(dto.getSubjectId(), dto.getSubjectCode(), dto.getSubjectName());
+            list.add(subject);
+        }
+        Tutor tutor = TutorFactory.buildTutor(body.getName(),body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), list);
         service.create(tutor);
         return ResponseEntity.ok().body(body);
 
@@ -65,7 +74,12 @@ public class TutorController implements TutorApiDelegate {
 
     @Override
     public ResponseEntity<TutorDTO> updateTutor(Long tutorId, TutorDTO body) {
-        Tutor tutor = TutorFactory.buildTutor(tutorId,body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail());
+        Set<Subject> list = new HashSet<>();
+        for(SubjectDTO dto: body.getAssignedSubjects()){
+            Subject subject = SubjectFactory.buildSubject(dto.getSubjectId(), dto.getSubjectCode(), dto.getSubjectName());
+            list.add(subject);
+        }
+        Tutor tutor = TutorFactory.buildTutor(tutorId,body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), list);
         service.update(tutor);
         body.setTutorId(tutor.getId());
         return ResponseEntity.ok().body(body);

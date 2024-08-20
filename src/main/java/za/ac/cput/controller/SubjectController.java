@@ -38,7 +38,7 @@ public class SubjectController implements SubjectApiDelegate {
         List<SubjectDTO> list = new ArrayList<>();
         for(Subject subject : service.getAll()) {
             SubjectDTO dto = new SubjectDTO(subject.getSubjectCode(), subject.getName());
-            dto.setSubjectId(subject.getId());
+            dto.setSubjectId(subject.getSubjectId());
             list.add(dto);
         }
         return ResponseEntity.ok().body(list);
@@ -48,7 +48,7 @@ public class SubjectController implements SubjectApiDelegate {
     public ResponseEntity<SubjectDTO> getSubjectById(Long subjectId) {
         Subject subject = service.read(subjectId);
         SubjectDTO dto = new SubjectDTO(subject.getSubjectCode(), subject.getName());
-        dto.setSubjectId(subject.getId());
+        dto.setSubjectId(subject.getSubjectId());
         return ResponseEntity.ok().body(dto);
     }
 
@@ -56,7 +56,7 @@ public class SubjectController implements SubjectApiDelegate {
     public ResponseEntity<SubjectDTO> updateSubject(Long subjectId, SubjectDTO body) {
         Subject subject = SubjectFactory.buildSubject(subjectId, body.getSubjectCode(),body.getSubjectName());
         service.update(subject);
-        body.setSubjectId(subject.getId());
+        body.setSubjectId(subject.getSubjectId());
         return ResponseEntity.ok().body(body);
     }
 }
