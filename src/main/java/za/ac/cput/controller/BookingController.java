@@ -33,7 +33,7 @@ public class BookingController implements BookingApiDelegate {
     @Override
     public ResponseEntity<BookingDTO> createBooking(BookingDTO body) {
         Booking booking = BookingFactory.buildBooking(LocalTime.parse(body.getStartTime()), LocalTime.parse(body.getEndTime()), body.getDate(), tutorService.read(body.getTutorId()),studentService.read(body.getStudentId()), subjectService.read(body.getSubjectId()), locationService.read(body.getLocationId()), body.getTopic());
-        service.create(booking);
+        body.setBookingId(service.create(booking).getBookingId());
         return ResponseEntity.ok().body(body);
     }
 
@@ -48,7 +48,7 @@ public class BookingController implements BookingApiDelegate {
         List<BookingDTO> list = new ArrayList<>();
         for(Booking booking: service.getAll()){
             BookingDTO dto = new BookingDTO(booking.getTutor().getId(),booking.getStudent().getId(), booking.getSubject().getSubjectId(), booking.getDate(), booking.getStartTime().toString(),booking.getEndTime().toString(),booking.getLocation().getLocationId(),booking.getTopic());
-            dto.setBookingId(booking.getBooking_id());
+            dto.setBookingId(booking.getBookingId());
             list.add(dto);
         }
         return ResponseEntity.ok().body(list);
@@ -58,7 +58,7 @@ public class BookingController implements BookingApiDelegate {
     public ResponseEntity<BookingDTO> getBookingById(Long bookingId) {
         Booking booking = service.read(bookingId);
         BookingDTO dto = new BookingDTO(booking.getTutor().getId(),booking.getStudent().getId(), booking.getSubject().getSubjectId(), booking.getDate(), booking.getStartTime().toString(),booking.getEndTime().toString(),booking.getLocation().getLocationId(),booking.getTopic());
-        dto.setBookingId(booking.getBooking_id());
+        dto.setBookingId(booking.getBookingId());
         return ResponseEntity.ok().body(dto);
     }
 
@@ -66,7 +66,7 @@ public class BookingController implements BookingApiDelegate {
     public ResponseEntity<BookingDTO> updateBooking(Long bookingId, BookingDTO body) {
         Booking booking = BookingFactory.buildBooking(bookingId,LocalTime.parse(body.getStartTime()), LocalTime.parse(body.getEndTime()), body.getDate(), tutorService.read(body.getTutorId()),studentService.read(body.getStudentId()), subjectService.read(body.getSubjectId()), locationService.read(body.getLocationId()), body.getTopic());
         service.update(booking);
-        body.setBookingId(booking.getBooking_id());
+        body.setBookingId(booking.getBookingId());
         return ResponseEntity.ok().body(body);
     }
 
@@ -76,7 +76,7 @@ public class BookingController implements BookingApiDelegate {
         Location location = locationService.read(locationId);
         for(Booking booking: service.findByLocation(location)){
             BookingDTO dto = new BookingDTO(booking.getTutor().getId(),booking.getStudent().getId(), booking.getSubject().getSubjectId(), booking.getDate(), booking.getStartTime().toString(),booking.getEndTime().toString(),booking.getLocation().getLocationId(),booking.getTopic());
-            dto.setBookingId(booking.getBooking_id());
+            dto.setBookingId(booking.getBookingId());
             list.add(dto);
         }
         return ResponseEntity.ok().body(list);
@@ -88,7 +88,7 @@ public class BookingController implements BookingApiDelegate {
         Student student = studentService.read(studentId);
         for(Booking booking: service.findByStudent(student)){
             BookingDTO dto = new BookingDTO(booking.getTutor().getId(),booking.getStudent().getId(), booking.getSubject().getSubjectId(), booking.getDate(), booking.getStartTime().toString(),booking.getEndTime().toString(),booking.getLocation().getLocationId(),booking.getTopic());
-            dto.setBookingId(booking.getBooking_id());
+            dto.setBookingId(booking.getBookingId());
             list.add(dto);
         }
         return ResponseEntity.ok().body(list);
@@ -100,7 +100,7 @@ public class BookingController implements BookingApiDelegate {
         Subject subject = subjectService.read(subjectId);
         for(Booking booking: service.findBySubject(subject)){
             BookingDTO dto = new BookingDTO(booking.getTutor().getId(),booking.getStudent().getId(), booking.getSubject().getSubjectId(), booking.getDate(), booking.getStartTime().toString(),booking.getEndTime().toString(),booking.getLocation().getLocationId(),booking.getTopic());
-            dto.setBookingId(booking.getBooking_id());
+            dto.setBookingId(booking.getBookingId());
             list.add(dto);
         }
         return ResponseEntity.ok().body(list);
@@ -112,7 +112,7 @@ public class BookingController implements BookingApiDelegate {
         Tutor tutor = tutorService.read(tutorId);
         for(Booking booking: service.findByTutor(tutor)){
             BookingDTO dto = new BookingDTO(booking.getTutor().getId(),booking.getStudent().getId(), booking.getSubject().getSubjectId(), booking.getDate(), booking.getStartTime().toString(),booking.getEndTime().toString(),booking.getLocation().getLocationId(),booking.getTopic());
-            dto.setBookingId(booking.getBooking_id());
+            dto.setBookingId(booking.getBookingId());
             list.add(dto);
         }
         return ResponseEntity.ok().body(list);

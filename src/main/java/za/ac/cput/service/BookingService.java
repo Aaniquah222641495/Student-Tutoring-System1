@@ -28,7 +28,7 @@ public class BookingService implements IService<Booking, Long>{
 
     @Override
     public Booking update(Booking object) {
-        if(repository.findById(object.getBooking_id()).orElse(null)!= null) {
+        if(repository.findById(object.getBookingId()).orElse(null)!= null) {
             return repository.save(object);
         }
         else return null;

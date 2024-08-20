@@ -23,7 +23,7 @@ public class LocationController implements LocationApiDelegate {
     @Override
     public ResponseEntity<LocationDTO> addLocation(LocationDTO body) {
         Location location = LocationFactory.buildLocation(body.getRoom(), body.getBuilding());
-        service.create(location);
+        body.setLocationId(service.create(location).getLocationId());
         return ResponseEntity.ok().body(body);
     }
 

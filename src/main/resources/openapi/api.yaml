@@ -1507,5 +1507,15 @@ components:
         studentId:
           type: integer
           format: int64
+    BullshitDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        lastName:
+          type: string
 x-original-swagger-version: "2.0"
   

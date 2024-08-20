@@ -30,7 +30,7 @@ public class ReviewService implements IService<Review,Long> {
 
     @Override
     public Review update(Review object) {
-        if(repository.findById(object.getId()).orElse(null)!= null) {
+        if(repository.findById(object.getReviewId()).orElse(null)!= null) {
             return repository.save(object);
         }
         else return null;

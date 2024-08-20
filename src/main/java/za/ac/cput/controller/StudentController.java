@@ -25,7 +25,7 @@ public class StudentController implements StudentApiDelegate {
     public ResponseEntity<StudentDTO> addStudent(StudentDTO body) {
         Student student = StudentFactory.buildStudent(body.getName(),body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getStudentNumber());
         if(student==null) return ResponseEntity.badRequest().body(null);
-        service.create(student);
+        body.setStudentId(service.create(student).getId());
         return ResponseEntity.ok().body(body);
     }
 

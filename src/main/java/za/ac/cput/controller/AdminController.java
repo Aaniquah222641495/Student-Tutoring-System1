@@ -24,7 +24,7 @@ public class AdminController implements AdminApiDelegate {
     @Override
     public ResponseEntity<AdminDTO> createAdmin(AdminDTO body) {
         Admin admin = AdminFactory.buildAdmin(body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail());
-        service.create(admin);
+        body.setId(service.create(admin).getId());
         return ResponseEntity.ok().body(body);
     }
 

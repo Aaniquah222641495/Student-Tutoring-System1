@@ -32,7 +32,7 @@ public class ReviewController implements ReviewApiDelegate {
     @Override
     public ResponseEntity<ReviewDTO> addReview(ReviewDTO body) {
         Review review = ReviewFactory.buildReview(body.getDescription(), body.getRating(), studentService.read(body.getStudentId()), tutorService.read(body.getTutorId()));
-        service.create(review);
+        body.setReviewId(service.create(review).getReviewId());
         return ResponseEntity.ok().body(body);
     }
 
@@ -47,7 +47,7 @@ public class ReviewController implements ReviewApiDelegate {
         List<ReviewDTO> list = new ArrayList<>();
         for(Review review: service.getAll()){
             ReviewDTO dto = new ReviewDTO(review.getTutor().getId(), review.getRating(), review.getDescription(), review.getAuthor().getId());
-            dto.setReviewId(review.getId());
+            dto.setReviewId(review.getReviewId());
             list.add(dto);
         }
 
@@ -77,7 +77,7 @@ public class ReviewController implements ReviewApiDelegate {
         Student student = studentService.read(studentId);
         for(Review review: service.getReviewsByStudent(student)){
             ReviewDTO dto = new ReviewDTO(review.getTutor().getId(), review.getRating(), review.getDescription(), review.getAuthor().getId());
-            dto.setReviewId(review.getId());
+            dto.setReviewId(review.getReviewId());
             list.add(dto);
         }
         return ResponseEntity.ok().body(list);
@@ -89,7 +89,7 @@ public class ReviewController implements ReviewApiDelegate {
         Tutor tutor = tutorService.read(tutorId);
         for(Review review: service.getReviewsByTutor(tutor)){
             ReviewDTO dto = new ReviewDTO(review.getTutor().getId(), review.getRating(), review.getDescription(), review.getAuthor().getId());
-            dto.setReviewId(review.getId());
+            dto.setReviewId(review.getReviewId());
             list.add(dto);
         }
         return ResponseEntity.ok().body(list);

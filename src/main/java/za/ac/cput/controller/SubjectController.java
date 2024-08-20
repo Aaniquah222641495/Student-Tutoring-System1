@@ -23,7 +23,7 @@ public class SubjectController implements SubjectApiDelegate {
     @Override
     public ResponseEntity<SubjectDTO> addSubject(SubjectDTO body) {
         Subject subject = SubjectFactory.buildSubject(body.getSubjectCode(), body.getSubjectName());
-        service.create(subject);
+        body.setSubjectId(service.create(subject).getSubjectId());
         return ResponseEntity.ok().body(body);
     }
 
