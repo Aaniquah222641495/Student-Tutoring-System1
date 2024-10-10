@@ -2,33 +2,34 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.domain.Admin;
-import za.ac.cput.repository.AdminRepository;
+import za.ac.cput.domain.Location;
+import za.ac.cput.repository.LocationRepository;
 
 import java.util.List;
 
 @Service
-public class AdminService implements IService<Admin,Long>{
-    private final AdminRepository repository;
+public class LocationService implements IService<Location, Long> {
+
+    private final LocationRepository repository;
 
     @Autowired
-    public AdminService(AdminRepository repository) {
+    public LocationService(LocationRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public Admin create(Admin object) {
+    public Location create(Location object) {
         return repository.save(object);
     }
 
     @Override
-    public Admin read(Long aLong) {
+    public Location read(Long aLong) {
         return repository.findById(aLong).orElse(null);
     }
 
     @Override
-    public Admin update(Admin object) {
-        if(repository.findById(object.getId()).orElse(null)!= null) {
+    public Location update(Location object) {
+        if(repository.findById(object.getLocationId()).orElse(null)!= null) {
             return repository.save(object);
         }
         else return null;
@@ -40,11 +41,7 @@ public class AdminService implements IService<Admin,Long>{
     }
 
     @Override
-    public List<Admin> getAll() {
+    public List<Location> getAll() {
         return repository.findAll();
-    }
-
-    public Admin authenticate(String email, String password) {
-        return repository.findByEmailAndPassword(email, password);
     }
 }

@@ -1,53 +1,33 @@
 package za.ac.cput.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-
-import java.util.Objects;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
+@Getter
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User {
+public class User {
     @Id
-    protected Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+    @NotNull
     protected String firstName;
+    @NotNull
     protected String lastName;
+    @NotNull
     protected String password;
+    @NotNull
+    @Column(unique = true)
+    protected String phoneNumber;
+    @Column(unique = true)
+    @NotNull
     protected String email;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName(){
-        return lastName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail(){
-        return email;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(password, user.password) && Objects.equals(email, user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, password, email);
-    }
 
 }
