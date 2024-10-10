@@ -32,7 +32,7 @@ public class BookingController implements BookingApiDelegate {
 
     @Override
     public ResponseEntity<BookingDTO> createBooking(BookingDTO body) {
-        Booking booking = BookingFactory.buildBooking(LocalTime.parse(body.getStartTime()), LocalTime.parse(body.getEndTime()), body.getDate(), tutorService.read(body.getTutorId()),studentService.read(body.getStudentId()), subjectService.read(body.getSubjectId()), locationService.read(body.getLocationId()), body.getTopic());
+        Booking booking = BookingFactory.buildBooking(LocalTime.parse(body.getStartTime()), LocalTime.parse(body.getEndTime()), body.getBookingDate(), tutorService.read(body.getTutorId()),studentService.read(body.getStudentId()), subjectService.read(body.getSubjectId()), locationService.read(body.getLocationId()), body.getTopic());
         body.setBookingId(service.create(booking).getBookingId());
         return ResponseEntity.ok().body(body);
     }
@@ -64,7 +64,7 @@ public class BookingController implements BookingApiDelegate {
 
     @Override
     public ResponseEntity<BookingDTO> updateBooking(Long bookingId, BookingDTO body) {
-        Booking booking = BookingFactory.buildBooking(bookingId,LocalTime.parse(body.getStartTime()), LocalTime.parse(body.getEndTime()), body.getDate(), tutorService.read(body.getTutorId()),studentService.read(body.getStudentId()), subjectService.read(body.getSubjectId()), locationService.read(body.getLocationId()), body.getTopic());
+        Booking booking = BookingFactory.buildBooking(bookingId,LocalTime.parse(body.getStartTime()), LocalTime.parse(body.getEndTime()), body.getBookingDate(), tutorService.read(body.getTutorId()),studentService.read(body.getStudentId()), subjectService.read(body.getSubjectId()), locationService.read(body.getLocationId()), body.getTopic());
         service.update(booking);
         body.setBookingId(booking.getBookingId());
         return ResponseEntity.ok().body(body);

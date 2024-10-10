@@ -1434,7 +1434,7 @@ components:
           type: string
     BookingDTO:
       required:
-        - date
+        - bookingDate
         - locationId
         - studentId
         - subjectId
@@ -1456,7 +1456,7 @@ components:
         subjectId:
           type: integer
           format: int64
-        date:
+        bookingDate:
           type: string
           format: date
         startTime:

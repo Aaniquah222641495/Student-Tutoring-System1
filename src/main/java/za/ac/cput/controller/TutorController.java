@@ -92,7 +92,7 @@ public class TutorController implements TutorApiDelegate {
 
     @Override
     public ResponseEntity<TutorDTO> authenticateTutor(String email, String password) {
-        Tutor tutor = service.authenticate(email, email);
+        Tutor tutor = service.authenticate(email, password);
         if(tutor==null) return ResponseEntity.badRequest().body(null);
         TutorDTO dto = new TutorDTO(tutor.getFirstName(), tutor.getLastName(), tutor.getEmail(),tutor.getPhoneNumber(),tutor.getPassword());
         dto.setTutorId(tutor.getId());
