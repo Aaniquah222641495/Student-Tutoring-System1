@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Subject;
 import za.ac.cput.repository.SubjectRepository;
 
+import java.util.List;
+
 @Service
-public class SubjectService implements IService<Subject,String> {
+public class SubjectService implements IService<Subject,Long> {
     private final SubjectRepository repository;
 
     @Autowired
@@ -20,20 +22,25 @@ public class SubjectService implements IService<Subject,String> {
     }
 
     @Override
-    public Subject read(String s) {
-        return repository.findById(s).orElse(null);
+    public Subject read(Long aLong) {
+        return repository.findById(aLong).orElse(null);
     }
 
     @Override
     public Subject update(Subject object) {
-        if(repository.findById(object.getSubjectCode()).orElse(null)!= null) {
+        if(repository.findById(object.getSubjectId()).orElse(null)!= null) {
             return repository.save(object);
         }
         else return null;
     }
 
     @Override
-    public void delete(String s) {
-        repository.deleteById(s);
+    public void delete(Long aLong) {
+        repository.deleteById(aLong);
+    }
+
+    @Override
+    public List<Subject> getAll() {
+        return repository.findAll();
     }
 }

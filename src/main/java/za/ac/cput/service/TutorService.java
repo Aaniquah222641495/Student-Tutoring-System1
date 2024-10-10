@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Tutor;
 import za.ac.cput.repository.TutorRepository;
 
+import java.util.List;
+
 @Service
-public class TutorService implements IService<Tutor, Integer>{
+public class TutorService implements IService<Tutor, Long>{
 
     private final TutorRepository repository;
 
@@ -21,8 +23,8 @@ public class TutorService implements IService<Tutor, Integer>{
     }
 
     @Override
-    public Tutor read(Integer integer) {
-        return repository.findById(integer).orElse(null);
+    public Tutor read(Long aLong) {
+        return repository.findById(aLong).orElse(null);
     }
 
     @Override
@@ -34,7 +36,16 @@ public class TutorService implements IService<Tutor, Integer>{
     }
 
     @Override
-    public void delete(Integer integer) {
-        repository.deleteById(integer);
+    public void delete(Long aLong) {
+        repository.deleteById(aLong);
+    }
+
+    @Override
+    public List<Tutor> getAll() {
+        return repository.findAll();
+    }
+
+    public Tutor authenticate(String email, String password) {
+        return repository.findByEmailAndPassword(email, password);
     }
 }
