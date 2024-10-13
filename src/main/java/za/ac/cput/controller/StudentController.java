@@ -23,7 +23,7 @@ public class StudentController implements StudentApiDelegate {
 
     @Override
     public ResponseEntity<StudentDTO> addStudent(StudentDTO body) {
-        Student student = StudentFactory.buildStudent(body.getName(),body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getStudentNumber());
+        Student student = StudentFactory.buildStudent(body.getName(),body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getStudentNumber(), body.getProfilePicture());
         if(student==null) return ResponseEntity.badRequest().body(null);
         body.setStudentId(service.create(student).getId());
         return ResponseEntity.ok().body(body);
@@ -41,6 +41,7 @@ public class StudentController implements StudentApiDelegate {
         for(Student student : service.getAll()){
             StudentDTO dto = new StudentDTO(student.getFirstName(), student.getLastName(), student.getEmail(),student.getPhoneNumber(),student.getPassword(), student.getStudentNumber());
             dto.setStudentId(student.getId());
+            dto.setProfilePicture(student.getProfilePicture());
             list.add(dto);
         }
         return ResponseEntity.ok().body(list);
@@ -52,12 +53,13 @@ public class StudentController implements StudentApiDelegate {
         if(student == null) return ResponseEntity.notFound().build();
         StudentDTO dto = new StudentDTO(student.getFirstName(),student.getLastName(),student.getEmail(),student.getPhoneNumber(), student.getPassword(),student.getStudentNumber());
         dto.setStudentId(student.getId());
+        dto.setProfilePicture(student.getProfilePicture());
         return ResponseEntity.ok().body(dto);
     }
 
     @Override
     public ResponseEntity<StudentDTO> updateStudent(Long studentId, StudentDTO body) {
-        Student student = StudentFactory.buildStudent(studentId,body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getStudentNumber());
+        Student student = StudentFactory.buildStudent(studentId,body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getStudentNumber(), body.getProfilePicture());
         if(student==null) return ResponseEntity.notFound().build();
         service.update(student);
         body.setStudentId(student.getId());
@@ -70,6 +72,7 @@ public class StudentController implements StudentApiDelegate {
         if (student == null) return ResponseEntity.badRequest().body(null);
         StudentDTO dto = new StudentDTO(student.getFirstName(),student.getLastName(),student.getEmail(),student.getPhoneNumber(), student.getPassword(),student.getStudentNumber());
         dto.setStudentId(student.getId());
+        dto.setProfilePicture(student.getProfilePicture());
         return ResponseEntity.ok().body(dto);
 
     }

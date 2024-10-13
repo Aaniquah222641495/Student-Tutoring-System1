@@ -23,7 +23,7 @@ public class AdminController implements AdminApiDelegate {
     }
     @Override
     public ResponseEntity<AdminDTO> createAdmin(AdminDTO body) {
-        Admin admin = AdminFactory.buildAdmin(body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail());
+        Admin admin = AdminFactory.buildAdmin(body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), body.getProfilePicture());
         body.setId(service.create(admin).getId());
         return ResponseEntity.ok().body(body);
     }
@@ -39,12 +39,13 @@ public class AdminController implements AdminApiDelegate {
         Admin admin = service.read(adminId);
         AdminDTO dto = new AdminDTO(admin.getFirstName(),admin.getLastName(),admin.getEmail(),admin.getPhoneNumber(), admin.getPassword());
         dto.setId(admin.getId());
+        dto.setProfilePicture(admin.getProfilePicture());
         return ResponseEntity.ok().body(dto);
     }
 
     @Override
     public ResponseEntity<AdminDTO> updateAdmin(Long adminId, AdminDTO body) {
-        Admin admin = AdminFactory.buildAdmin(adminId,body.getName(),body.getLastName(),body.getPhoneNumber(),body.getPassword(),body.getEmail());
+        Admin admin = AdminFactory.buildAdmin(adminId,body.getName(),body.getLastName(),body.getPhoneNumber(),body.getPassword(),body.getEmail(), body.getProfilePicture());
         service.update(admin);
         body.setId(admin.getId());
         return ResponseEntity.ok().body(body);
@@ -56,6 +57,7 @@ public class AdminController implements AdminApiDelegate {
         for(Admin admin : service.getAll()){
             AdminDTO dto = new AdminDTO(admin.getFirstName(),admin.getLastName(),admin.getEmail(),admin.getPhoneNumber(), admin.getPassword());
             dto.setId(admin.getId());
+            dto.setProfilePicture(admin.getProfilePicture());
             list.add(dto);
         }
         return ResponseEntity.ok().body(list);
@@ -67,6 +69,7 @@ public class AdminController implements AdminApiDelegate {
         if(admin == null) return ResponseEntity.badRequest().body(null);
         AdminDTO dto = new AdminDTO(admin.getFirstName(),admin.getLastName(),admin.getEmail(),admin.getPhoneNumber(), admin.getPassword());
         dto.setId(admin.getId());
+        dto.setProfilePicture(admin.getProfilePicture());
         return ResponseEntity.ok().body(dto);
     }
 }

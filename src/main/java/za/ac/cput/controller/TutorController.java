@@ -34,8 +34,7 @@ public class TutorController implements TutorApiDelegate {
                 Subject subject = SubjectFactory.buildSubject(dto.getSubjectId(), dto.getSubjectCode(), dto.getSubjectName());
                 list.add(subject);
             }
-        }
-        Tutor tutor = TutorFactory.buildTutor(body.getName(),body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), list);
+        }Tutor tutor = TutorFactory.buildTutor(body.getName(),body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), list, body.getProfilePicture());
         body.setTutorId(service.create(tutor).getId());
         return ResponseEntity.ok().body(body);
 
@@ -53,6 +52,7 @@ public class TutorController implements TutorApiDelegate {
         for(Tutor tutor : service.getAll()){
             TutorDTO dto = new TutorDTO(tutor.getFirstName(), tutor.getLastName(), tutor.getEmail(),tutor.getPhoneNumber(),tutor.getPassword());
             dto.setTutorId(tutor.getId());
+            dto.setProfilePicture(tutor.getProfilePicture());
             list.add(dto);
             for(Subject subject : tutor.getAssignedSubjects()) {
                 SubjectDTO subjectDTO = new SubjectDTO(subject.getSubjectCode(), subject.getName());
@@ -67,6 +67,7 @@ public class TutorController implements TutorApiDelegate {
         Tutor tutor= service.read(tutorId);
         TutorDTO dto = new TutorDTO(tutor.getFirstName(), tutor.getLastName(), tutor.getEmail(),tutor.getPhoneNumber(),tutor.getPassword());
         dto.setTutorId(tutor.getId());
+        dto.setProfilePicture(tutor.getProfilePicture());
         for(Subject subject : tutor.getAssignedSubjects()) {
             SubjectDTO subjectDTO = new SubjectDTO(subject.getSubjectCode(), subject.getName());
             subjectDTO.setSubjectId(subject.getSubjectId());
@@ -84,7 +85,7 @@ public class TutorController implements TutorApiDelegate {
                 list.add(subject);
             }
         }
-        Tutor tutor = TutorFactory.buildTutor(tutorId,body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), list);
+        Tutor tutor = TutorFactory.buildTutor(tutorId,body.getName(), body.getLastName(), body.getPhoneNumber(), body.getPassword(), body.getEmail(), list, body.getProfilePicture());
         service.update(tutor);
         body.setTutorId(tutor.getId());
         return ResponseEntity.ok().body(body);
@@ -96,6 +97,7 @@ public class TutorController implements TutorApiDelegate {
         if(tutor==null) return ResponseEntity.badRequest().body(null);
         TutorDTO dto = new TutorDTO(tutor.getFirstName(), tutor.getLastName(), tutor.getEmail(),tutor.getPhoneNumber(),tutor.getPassword());
         dto.setTutorId(tutor.getId());
+        dto.setProfilePicture(tutor.getProfilePicture());
         return ResponseEntity.ok().body(dto);
     }
 }
