@@ -21,7 +21,7 @@ class AdminServiceTest {
 
     @BeforeAll
     static void setUp() {
-        admin = AdminFactory.buildAdmin("Mohamed", "Zouheir", "0624770258", "gogo", "mohamedzo@gmail.com");
+        admin = AdminFactory.buildAdmin("Mohamed", "Zouheir", "0624770258", "gogo", "mohamedzo@gmail.com", new byte[0]);
     }
     @Order(1)
     @Test

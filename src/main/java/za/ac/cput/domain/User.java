@@ -28,6 +28,7 @@ public class User {
     @Column(unique = true)
     @NotNull
     protected String email;
-
-
+    @Lob
+    @Column(name = "profilePicture", columnDefinition = "MEDIUMBLOB")
+    protected byte[] profilePicture;
 }
