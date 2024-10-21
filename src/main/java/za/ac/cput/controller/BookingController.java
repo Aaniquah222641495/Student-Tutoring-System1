@@ -36,7 +36,7 @@ public class BookingController implements BookingApiDelegate {
     public ResponseEntity<BookingDTO> createBooking(BookingDTO body) {
         System.out.println("DTO: " + body );
         Booking booking = BookingFactory.buildBooking(LocalTime.parse(body.getStartTime()), LocalTime.parse(body.getEndTime()), body.getBookingDate(), tutorService.read(body.getTutorId()),studentService.read(body.getStudentId()), subjectService.read(body.getSubjectId()), locationService.read(body.getLocationId()), body.getTopic());
-        System.out.println("Booking: "+ booking);
+        System.out.println("Booking: "+ booking.toString());
         body.setBookingId(service.create(booking).getBookingId());
         return ResponseEntity.ok().body(body);
     }
